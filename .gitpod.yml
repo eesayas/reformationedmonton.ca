@@ -1,5 +1,5 @@
 tasks:
-  - command: npm i -D locus dotenv && npm i -g nodemon
+  - command: npm i -D locus dotenv && npm i -g nodemon && nodemon
     
 image:
   file: .gitpod.Dockerfile

@@ -5,6 +5,7 @@
     flex-direction: row;
     position: fixed;
     transition: 0.3s;
+    z-index: 100;
 }
 
 #logo-cont{
@@ -29,10 +30,10 @@
     bottom: 0;
 }
 
-#links-cont > a{
+#links-cont > .link{
     text-transform: uppercase;
     text-decoration: none;
-    color: black;
+    color: white;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
     letter-spacing: 0.1rem;
@@ -44,8 +45,8 @@
 	content: '';
 	display: block;
 	width: 0%;
-	height: 1.5px;
-	background: black;
+	height: 2px;
+	background: #1AA6BB;
 	transition: width 0.3s;
 }
 
@@ -55,8 +56,13 @@
 }
 
 
-.ui.button{
-    color: white !important;
-    background-color: #022d41 !important;
-    border-radius: 0 !important;
+#contact-us-btn{
+    margin: 0 1rem;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: black;
+    background: white;
+    border-radius: 0;
 }
