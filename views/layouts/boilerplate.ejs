@@ -7,27 +7,49 @@
     <!--CSS-->
     <link rel="stylesheet" href="/stylesheets/global.css">
     <link rel="stylesheet" href="/stylesheets/partials/navbar.css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css">
+    <link rel="stylesheet" href="/stylesheets/partials/navbar-black.css">
+    <link rel="stylesheet" href="/stylesheets/sermons/index.css">
     <link rel="stylesheet" href="/stylesheets/index.css">
-
+    <link rel="stylesheet" href="/stylesheets/visit.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/button.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+	
     <!--JS-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 
   </head>
   <body>
 
-    <div style="height: 1999px;">
-    
-        <% include ../partials/navbar%>
+    <div>
         <%- body -%>
-
+        <% include ../partials/footer %>
     </div>
 
 
     <!--JS Custom-->
+
     <script src="/javascripts/partials/navbar.js"></script>
+    <script src="/javascripts/partials/navbar-black.js"></script>
+    <script src="/javascripts/index.js"></script>
+
+    <script>
+        tns({
+            items: 2,
+            mouseDrag: true,
+            preventActionWhenRunning: true,
+            preventScrollOnTouch: true,
+            gutter: 20,
+            controls: false,
+            nav: false,
+            fixedWidth: 500
+        });
+    </script>
+    <script src="/javascripts/sermons/index.js"></script>
+    <script src="/javascripts/events/index.js"></script>
+
   </body>
 </html>

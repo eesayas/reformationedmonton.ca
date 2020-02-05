@@ -1,2 +1,54 @@
 <%- layout('layouts/boilerplate') -%>
-<div>visit us page</div>
+<% include ./partials/navbar-black %>
+
+<div id="visit-cont">
+
+    <div>
+        <div id="worship-rem">
+            <div>Sunday Morning Worship</div>
+            <div>at</div>
+            <div>10:30 am</div>
+        </div>
+        
+        <div id="address">
+            <span>Royal Gardens Community League</span><br>
+            4030 117 Street NW, <br>
+            Edmonton, Alberta T6J 2W5 <br>
+        </div>
+        <div id="map"></div>
+
+    </div>
+</div>
+
+<script>
+
+        let map;
+        document.addEventListener("DOMContentLoaded", () => {
+            let s = document.createElement("script");
+            document.head.appendChild(s);
+            s.addEventListener("load", () => {
+                //script has loaded
+                console.log("script has loaded");
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: {
+                        lat: 53.4776184,
+                        lng: -113.535205
+                    },
+                    zoom: 16,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+
+                marker = new google.maps.Marker(
+                    {
+                        position: {
+                            lat: 53.4776184,
+                            lng: -113.535205
+                        },
+                        map: map
+                    }
+                );
+            });
+            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAP2Mgp9OC5w93SxPRQdxpDXB_-CUF50P4`;
+        });
+
+</script>

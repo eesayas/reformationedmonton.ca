@@ -1,13 +1,14 @@
 <%- layout('layouts/boilerplate') -%>
+<% include ./partials/navbar%>
 
 <div id="fullscreen-cont">
-    <div id="main-display-cont">
-        <img src="/images/congregation/congregation-1.JPG">
-    </div>
+
+    <div id="image-layer" style="background-image: url('/images/congregation/congregation-2.JPG');"></div>
+    <div id="backdrop"></div>
 
     <div id="main-text-cont">
         <div>
-            "In Him the whole structure being joined together, <br>
+            "In Him the whole structure being joined together,
             grows into a holy temple in the Lord."
         </div>
         <div>Ephesians 2:21</div>
@@ -21,7 +22,7 @@
             <!--DAYS-->
             <div class="denom-cont">
                 <div>
-                    <div class="digit">04</div>
+                    <div class="digit" id="digit-days">00</div>
                     <div class="denom">days</div>
                 </div>
             </div>
@@ -29,7 +30,7 @@
             <!--HOURS-->
             <div class="denom-cont">
                 <div>
-                    <div class="digit">06</div>
+                    <div class="digit" id="digit-hours">00</div>
                     <div class="denom">hours</div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
             <!--MINUTES-->
             <div class="denom-cont">
                 <div>
-                    <div class="digit">12</div>
+                    <div class="digit" id="digit-mins">00</div>
                     <div class="denom">minutes</div>
                 </div>
             </div>
@@ -46,7 +47,7 @@
             <div class="denom-cont">
 
                 <div>
-                    <div class="digit">80</div>
+                    <div class="digit" id="digit-secs">00</div>
                     <div class="denom">seconds</div>
                 </div>
             </div>
@@ -55,5 +56,62 @@
 
         <div id="text"><a href="/">until next event</a></div>
 
+    </div>
+</div>
+
+<!---SERMON PANEL-->
+<div class="panel">
+    <div class="panel-text panel-left">
+        <div>
+            <div class="panel-title">Sermons</div>
+            <div class="panel-body">
+                We conduct our morning worship service at the <span>Royal Gardens Community League</span>
+                every Sunday. The sermons are video recorded and are available on this website and <span>Youtube</span>.
+            </div>
+            <a class="panel-link">View Sermons <span>></span></a>
+        </div>
+    </div>
+
+    <div class="panel-image panel-right"></div>
+</div>
+
+<div class="panel" style="overflow: hidden;">
+    <div class="panel-image panel-left" id="panel-img-second">
+
+    </div>
+
+    <div class="panel-text panel-right">
+        <div>
+            <div class="panel-title">About Us</div>
+            <div class="panel-body">
+                We are a Reformed Baptist Christian Church in Edmonton, Alberta.
+                You can click below to find out what we believe in, and get to know 
+                our ministry.
+            </div>
+            <a class="panel-link">Our Worship <span>></span></a>
+        </div>
+    </div>
+</div>
+
+<!-- EVENTS -->
+<div style="width: 100%; padding-bottom: 0rem; background: #f5f5f5;">
+    <div id="event-thumb-title">upcoming events</div>
+    <div class="slider" style="width: 100%;">
+        <div class="event-thumb-cont">
+            <div class="event-thumb-inner-cont" style="background: white;">
+                <div class="event-thumb-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
+                <div class="event-thumb-details">
+                    <div class="event-thumb-title">Morning Sunday Worship</div>
+                    <div class="event-thumb-setting">
+                        <div class="event-thumb-time">
+                            <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
+                        </div>
+                        <div class="event-thumb-location">
+                            <i class="map marker alternate icon"></i> Royal Gardens Community League
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

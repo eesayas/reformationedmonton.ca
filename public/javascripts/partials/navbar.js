@@ -6,10 +6,10 @@ $('#logo-cont').click( function() {
 //generalize
 function scrolledNav(){
     $('#logo-cont>img').attr('src', '/images/RBCE-LOGO.png');
-    $('#logo-cont').css({
-        width: '15rem',
-        transition: '0.3s'
-    });
+    // $('#logo-cont').css({
+    //     width: '15rem',
+    //     transition: '0.3s'
+    // });
     $('#navbar-cont').css('background', 'white');
     $('#links-cont > .link').css('color', 'black');
     $('#contact-us-btn').css({
@@ -31,10 +31,10 @@ $(window).on('scroll', function(){
 
     if( !$(window).scrollTop() ){
         $('#logo-cont>img').attr('src', '/images/RBCE-LOGO-white.png');
-        $('#logo-cont').css({
-            width: '20rem',
-            transition: '0.3s'
-        });
+        // $('#logo-cont').css({
+        //     width: '20rem',
+        //     transition: '0.3s'
+        // });
 
         $('#navbar-cont').css({
             background: 'none',

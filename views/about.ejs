@@ -1,2 +1,43 @@
 <%- layout('layouts/boilerplate') -%>
-<div>welcome!</div>
+<% include ./partials/navbar-black %>
+<style>
+
+    .cat{
+        width: 50%;
+        margin: 0 25%;
+        border: 1px solid red;
+    }
+    .cat-title{
+        text-transform: capitalize;
+        text-align:center;
+        font-weight: 500;
+        font-size: 2rem;
+        margin: 1rem 0;
+    }
+
+    .cat-body{
+        text-align: center;
+        width: 80%;
+        margin: 0 10%;
+    }
+
+</style>
+
+
+
+<div id="about-cont">
+    <div class="cat"> 
+        <div class="cat-title">what we worship</div>
+        <div class="cat-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna 
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+            ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint 
+            occaecat cupidatat non proident, sunt in culpa qui officia 
+            deserunt mollit anim id est laborum.
+        </div>
+    
+    </div>
+</div>

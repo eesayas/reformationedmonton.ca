@@ -1,0 +1,66 @@
+#navbar-cont-black{
+    width: 100%;
+    /* border: 1px solid red; */
+    display: table;
+    position: fixed;
+    background: white;
+    z-index: 1000;
+}
+
+#logo-cont-black{
+    width: 15rem;
+    margin: 2rem;
+    margin-left: 3rem;
+    cursor: pointer;
+    /* border: 1px solid green; */
+}
+
+#logo-cont-black > img{
+    width: 100%;
+}
+
+#links-cont-black{
+    position: absolute;
+    /* border: 1px solid blue; */
+    margin: 2rem;
+    margin-right: 3rem;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#links-cont-black > .link{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    margin: 0 1rem;
+    display: inline-block;
+}
+
+#links-cont-black > .link::after{
+	content: '';
+	display: block;
+	width: 0%;
+	height: 2px;
+	background: #1AA6BB;
+	transition: width 0.3s;
+}
+
+#links-cont-black > .link:hover::after{
+	width: 100%;
+	transition: width 0.3s;
+}
+
+#contact-us-btn-black{
+    margin: 0 1rem;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: white;
+    background: #022d41;
+    border-radius: 0;
+}

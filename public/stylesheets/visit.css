@@ -1,0 +1,40 @@
+#visit-cont{
+    width: 100%;
+    /* border:1px solid blue; */
+    background: #2f2f2f;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+}
+
+#worship-rem{
+    text-align: center;
+    font-size: 2rem;
+}
+
+#worship-rem > div:nth-child(1){
+    letter-spacing: 0.4rem;
+}
+
+#visit-cont > div{
+    width: 60%;
+    margin: 0 20%;
+    padding: 2rem 0;
+    color: white;
+}
+
+#visit-cont #map{
+    margin-top: 2rem;
+    height: 30rem;
+}
+
+#visit-cont #address{
+    text-align: center;
+    margin: 1rem;
+}
+
+#visit-cont #address span{
+    font-weight: 500;
+    line-height: 3rem;
+}
+

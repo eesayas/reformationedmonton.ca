@@ -1,0 +1,73 @@
+<%- layout('layouts/boilerplate') -%>
+<% include ../partials/navbar-black.ejs %>
+<style>
+    #event-show-main{
+        position: relative;
+        width: 100%;
+        height: 30rem;
+    }
+
+    #event-show-img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        /* opacity: 0.6; */
+    }
+
+    #event-show-background{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(transparent, black);
+    }
+
+    #event-show-details{
+        position: absolute;
+        /* border: 1px solid red; */
+        bottom: 0;
+        color: white;
+        margin: 0 1rem;
+    }
+
+    #event-show-title{
+        text-transform: capitalize;
+        font-weight: bold;
+        letter-spacing: 0.2rem;
+        font-size: 4rem;
+        white-space: nowrap;
+    }
+
+    #event-show-setting{
+        display: flex;
+    }
+    
+    #event-show-setting > div{
+        margin: 1rem 2rem 1rem 0;
+    }
+</style>
+
+
+<div id="event-show-cont">
+    
+    <div id="event-show-main">
+        <div style="background-image: url('/images/event/bible-study-event.JPG')" id="event-show-img"></div>
+        <div id="event-show-background"></div>
+        
+        <div id="event-show-details">
+            <div id="event-show-title">morning sunday worship</div>
+
+            <div id="event-show-setting">
+                <div id="event-show-time">
+                    <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
+                </div>
+                <div id="event-show-location">
+                    <i class="map marker alternate icon"></i> Royal Gardens Community League
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

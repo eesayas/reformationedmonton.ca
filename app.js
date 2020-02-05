@@ -9,6 +9,7 @@ const logger = require('morgan');
 //mount routes
 const indexRouter = require('./routes/index');
 const sermonsRouter = require('./routes/sermons');
+const eventsRouter = require('./routes/events');
 // const usersRouter = require('./routes/users');
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //connect routers into routes
 app.use('/', indexRouter);
 app.use('/sermons', sermonsRouter);
+app.use('/events', eventsRouter);
 // app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
