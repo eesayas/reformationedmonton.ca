@@ -34,7 +34,7 @@
     text-transform: uppercase;
     text-decoration: none;
     color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     letter-spacing: 0.1rem;
     margin: 0 1rem;
@@ -55,14 +55,58 @@
 	transition: width 0.3s;
 }
 
+#links-cont i{
+    color: white;
+    font-size: 1.8rem;
+    /* border: 1px solid red; */
+    margin: 1rem;
+    display: none;
+}
+
 
 #contact-us-btn{
     margin: 0 1rem;
     text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     letter-spacing: 0.1rem;
     color: black;
     background: white;
     border-radius: 0;
+}
+
+/*RESPONSIVE*/
+
+@media only screen and (max-width: 1220px){
+    #links-cont .link, #links-cont #contact-us-btn{
+        display: none;
+    }
+
+    #links-cont i{
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    #logo-cont{
+        width: 20rem;
+        /* border: 1px solid red !important; */
+    }
+}
+
+@media only screen and (max-width: 530px){
+    #logo-cont{
+        width: 15rem;
+        /* border: 1px solid red !important; */
+        margin-left: right;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 400px){
+    #links-cont i{
+        display: none;
+    }
 }

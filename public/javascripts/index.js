@@ -9,9 +9,15 @@ $(window).scroll(function(){
 
 function parallax(){
     var wScroll = $(window).scrollTop();
+    var offsetTop = $('#location-panel > #image').offset().top;
 
     $('#image-layer').css({
         'background-position' : 'center ' + (wScroll * 0.75) + 'px'
+    });
+
+    
+    $('#location-panel > #image').css({
+        'background-position' : 'center ' + ((wScroll - offsetTop) * 0.75) + 'px'
     });
 }
 

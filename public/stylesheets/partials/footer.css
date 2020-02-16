@@ -1,0 +1,43 @@
+#footer-cont{
+    background: #022D41;
+    height: 15rem;
+    color: white;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    letter-spacing: 0.1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+#footer-inner-cont{
+    display: flex;
+    /* border: 1px solid green; */
+    justify-content: center;
+    /* margin: auto 0; */
+}
+
+#footer-inner-cont > div{
+    padding: 4rem 2rem;
+}
+
+#footer-address{
+    border-right: 1px solid white;    
+}
+
+#footer-contact > div{
+    margin: 0.7rem 0;
+}
+
+#trademark{
+    text-align: center;
+    color: white;
+    font-size: 0.8rem;
+    padding-top: 1rem;
+}
+
+#footer-social > i{
+    font-size: 1.2rem !important;
+    /* color: black !important; */
+}

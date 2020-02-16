@@ -15,40 +15,21 @@
             4030 117 Street NW, <br>
             Edmonton, Alberta T6J 2W5 <br>
         </div>
+        
         <div id="map"></div>
+        <br>
+        <div style="font-style: italic; color: #87847a;">
+            * As we rent this property, occasionally worship times and location may change 
+            depending on previous commitments the League has made to others in the community.
+            Should the location change, it will be noted on the website. Normally these changes 
+            are infrequent. 
+        </div>
 
+    </div>
+    <div id="visitor-log">
+        <div>Have you visited us? or Planning to visit us?</div>
+        <a class="ui button" href="/visitors-log/new">visitor's log</a>
     </div>
 </div>
 
-<script>
-
-        let map;
-        document.addEventListener("DOMContentLoaded", () => {
-            let s = document.createElement("script");
-            document.head.appendChild(s);
-            s.addEventListener("load", () => {
-                //script has loaded
-                console.log("script has loaded");
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: {
-                        lat: 53.4776184,
-                        lng: -113.535205
-                    },
-                    zoom: 16,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
-
-                marker = new google.maps.Marker(
-                    {
-                        position: {
-                            lat: 53.4776184,
-                            lng: -113.535205
-                        },
-                        map: map
-                    }
-                );
-            });
-            s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAP2Mgp9OC5w93SxPRQdxpDXB_-CUF50P4`;
-        });
-
-</script>
+<script src="/javascripts/google-maps-integration.js">

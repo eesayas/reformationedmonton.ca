@@ -5,6 +5,10 @@ module.exports = {
         res.render('index', { title });
     },
 
+    ourWorshipPage(req, res, next){
+        res.render('our-worship', { title });
+    },
+
     aboutPage(req, res, next){
         res.render('about', { title });
     },

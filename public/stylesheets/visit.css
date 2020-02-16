@@ -38,3 +38,14 @@
     line-height: 3rem;
 }
 
+#visitor-log > div{
+    margin-bottom: 1rem;
+}
+
+#visitor-log .ui.button{
+    border-radius: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    background: #FE424D;
+    color: white;
+}

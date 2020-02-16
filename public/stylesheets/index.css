@@ -30,11 +30,13 @@
     top: 50%;
     transform: translateY(-50%);
     margin: 0 5rem;
+    /* border: 1px solid red; */
 }
 
 #main-text-cont > div{
     color: white;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    /* border: 1px solid blue; */
 }
 
 #main-text-cont > div:nth-child(1){
@@ -51,7 +53,7 @@
     font-size: 2rem;
 }
 
-#main-text-cont > #join-us{
+#main-text-cont  #join-us{
     border-radius: 0;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -191,6 +193,71 @@
     /* background-size: auto 100%; */
 }
 
+#location-panel{
+    height: 60vh;
+    position: relative;
+    width: 100%;
+}
+
+#location-panel > #image{
+    position: absolute;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 60vh;
+    opacity: 0.3;
+    /* z-index: 1000; */
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+#location-panel > #back{
+    position: absolute;
+    width: 100%;
+    height: 60vh;
+    background: #022D41;
+    /* z-index: -1000; */
+    /* opacity: 0.3; */
+}
+
+#location-panel > #text{
+    position: absolute;
+    display: table;
+    color: white;
+    width: 60%;
+    top: 0;
+    bottom: 0;
+    margin: auto 20%;
+}
+
+#location-panel > #text #title{
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+    letter-spacing: 0.5rem;
+}
+
+#location-panel > #text #body{
+    width: 60%;
+    margin: 0 20%;
+    text-align: center;
+    font-size: 1.2rem;
+    /* line-height: 2rem; */
+    letter-spacing: 0.08rem;
+}
+
+#location-panel > #text #btn-cont{
+    /* border: 1px solid red; */
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#location-panel > #text #btn-cont a{
+    background: #FE424D;
+    border-radius: 0;
+    color: white;
+    letter-spacing: 0.1rem;
+}
 
 /* EVENTS */
 #event-thumb-title{
@@ -242,4 +309,59 @@
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     letter-spacing: 0.08rem;
     line-height: 1.5rem;
+}
+
+/*RESPONSIVE*/
+@media only screen and (max-width: 1000px){
+    #main-text-cont > div{
+        display: block;
+        width: 100% !important;
+        text-align: center;
+    }
+
+    #join-us-cont{
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-text-cont  #join-us{
+        margin: 0 auto !important;
+    }
+
+    #next-event-cont{
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 800px){
+    #next-event-cont{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    #main-text-cont{
+        margin: 0 1rem !important;
+        /* border: 1px solid red; */
+        /* font-size-adjust: 0.6 !important; */
+    }
+
+    #main-text-cont div:nth-child(1){
+        font-size: 2rem !important;
+        /* border: 1px solid red; */
+        
+    }
+}
+
+@media only screen and (max-height: 750px){
+      #next-event-cont{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    #main-text-cont{
+        display: none;
+    }
 }
