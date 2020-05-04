@@ -1,0 +1,35 @@
+<%- layout('layouts/boilerplate') -%>
+<% include ./partials/navbar-black %>
+
+<div id="visit-cont">
+
+    <div>
+        <div id="worship-rem">
+            <div>Sunday Morning Worship</div>
+            <div>at</div>
+            <div>10:30 am</div>
+        </div>
+        
+        <div id="address">
+            <span>Royal Gardens Community League</span><br>
+            4030 117 Street NW, <br>
+            Edmonton, Alberta T6J 2W5 <br>
+        </div>
+        
+        <div id="map"></div>
+        <br>
+        <div style="font-style: italic; color: #87847a;">
+            * As we rent this property, occasionally worship times and location may change 
+            depending on previous commitments the League has made to others in the community.
+            Should the location change, it will be noted on the website. Normally these changes 
+            are infrequent. 
+        </div>
+
+    </div>
+    <div id="visitor-log">
+        <div>Have you visited us? or Planning to visit us?</div>
+        <a class="ui button" href="/visitors-log/new">visitor's log</a>
+    </div>
+</div>
+
+<script src="/javascripts/google-maps-integration.js">
