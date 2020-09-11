@@ -1,0 +1,21 @@
+.navbar-brand{
+    width: 15rem;
+}
+
+.nav-link{
+    font-weight: 400;
+}
+
+.navbar-blue{
+    background: #022d41;
+}
+
+.navbar-collapse{
+    margin: 0 1rem 1rem 1rem;
+}
+
+@media only screen and (max-width: 400px){
+    .navbar-brand{
+        width: 10rem;
+    }
+}

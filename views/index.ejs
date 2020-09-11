@@ -1,147 +1,92 @@
 <%- layout('layouts/boilerplate') -%>
-<% include ./partials/navbar%>
+<link rel="stylesheet" href="/stylesheets/index.css">
 
-<div id="fullscreen-cont">
-
-    <div id="image-layer" style="background-image: url('/images/congregation/congregation-2.JPG');"></div>
-    <div id="backdrop"></div>
-
-    <div id="main-text-cont">
-        <div>
-            "In Him the whole structure being joined together,
-            grows into a holy temple in the Lord."
-        </div>
-        <div>Ephesians 2:21</div>
-        <div id="join-us-cont">
-            <a class="ui button" id="join-us" href="/visit-us">join us</a>
+<div>
+    <% include ./partials/navbar.ejs %>
+    <!-- MAIN DISPLAY -->
+    <div class="fullscreen">
+        <div class="backdrop w-100 h-100"></div>
+        <div class="image-backdrop w-100 h-100"></div>
+        <div class="main-display h-100">
+            <div class="jumbotron">
+                <h3 class="text-white lead">
+                    <em>
+                        "In Him the whole structure being joined together, grows into a holy temple in the Lord."
+                    </em>
+                </h3>
+                <p class="lead text-white d-none d-sm-block">Ephesians 2:21</p>
+                <br>
+                <a class="btn btn-lg red-button rounded-0" href="#" role="button">ATTEND A SERVICE</a>
+            </div>
         </div>
     </div>
-
-    <div id="next-event-cont">
-        <div id="time-cont">
-
-            <!--DAYS-->
-            <div class="denom-cont">
-                <div>
-                    <div class="digit" id="digit-days">00</div>
-                    <div class="denom">days</div>
+    <!-- PANELS -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm panel-text">
+                <div class="lead">
+                    We conduct our morning worship service at 10:30am
+                    every Sunday. The sermons are streamed live on this
+                    website and uploaded to <a href="#">Youtube</a> afterwards.
+                    <br><br>
+                    <a href="#" class="text-dark">
+                        <strong>
+                            <span>View Sermons</span> 
+                            <span class="font-weight-bold chevron">></span>
+                        </strong>
+                    </a>
                 </div>
             </div>
-
-            <!--HOURS-->
-            <div class="denom-cont">
-                <div>
-                    <div class="digit" id="digit-hours">00</div>
-                    <div class="denom">hours</div>
+            <div class="col-sm panel-pic d-none d-sm-block" style="background-image: url('/images/panel/sermon-panel-img.png')"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm panel-pic d-none d-sm-block" style="background-image: url('/images/panel/about-us-panel.JPG')"></div>
+            <div class="col-sm panel-text">
+                <div class="lead">
+                    We are a Reformed Baptist Christian Church in Edmonton, Alberta.
+                    You can click below to find out what we believe in, and get to know 
+                    our ministry.
+                    <br><br>
+                    <a href="#" class="text-dark">
+                        <strong>
+                            <span>What To Expect</span> 
+                            <span class="font-weight-bold chevron">></span>
+                        </strong>
+                    </a>
                 </div>
             </div>
-
-            <!--MINUTES-->
-            <div class="denom-cont">
-                <div>
-                    <div class="digit" id="digit-mins">00</div>
-                    <div class="denom">minutes</div>
-                </div>
-            </div>
-
-            <!--SECONDS-->
-            <div class="denom-cont">
-
-                <div>
-                    <div class="digit" id="digit-secs">00</div>
-                    <div class="denom">seconds</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="text"><a href="/">until next event</a></div>
-
-    </div>
-</div>
-
-<!---SERMON PANEL-->
-<div class="panel">
-    <div class="panel-text panel-left">
-        <div>
-            <div class="panel-title">Sermons</div>
-            <div class="panel-body">
-                We conduct our morning worship service at the <span>Royal Gardens Community League</span>
-                every Sunday. The sermons are video recorded and are available on this website and <span>Youtube</span>.
-            </div>
-            <a class="panel-link">View Sermons <span>></span></a>
         </div>
     </div>
-
-    <div class="panel-image panel-right"></div>
-</div>
-
-<div class="panel" style="overflow: hidden;">
-    <div class="panel-image panel-left" id="panel-img-second">
-
-    </div>
-
-    <div class="panel-text panel-right">
-        <div>
-            <div class="panel-title">About Us</div>
-            <div class="panel-body">
-                We are a Reformed Baptist Christian Church in Edmonton, Alberta.
-                You can click below to find out what we believe in, and get to know 
-                our ministry.
-            </div>
-            
-            <a class="panel-link">Go To About Us <span>></span></a><br>
-            
-        </div>
-    </div>
-</div>
-
-<div class="panel" id="location-panel" style="overflow: hidden;">
-    <div id="back"></div>
-    <div id="image" style="background-image: url('/images/congregation/congregation-3.png');"></div>
-    <div id="text">
-        <div id="title">Location and Times</div>
-        <div id="body">
-            <span style="line-height: 2rem;">
+    <!--LOCATION-->
+    <div class="location-cont">
+        <div class="backdrop w-100 h-100"></div>
+        <div class="location-image w-100 h-100" style="background-image: url('/images/mckernan.jpg')"></div>
+        <div class="location-text text-white lead text-center w-100 px-4">
             Join us each Sunday at 10:30 am for our family worship time. 
             We meet at the Royal Gardens Community League small hall which is located at, 
             4033 117 St NW in Edmonton.
-            </span>
             <br><br>
-            <span style="font-size: 1rem; line-height: 1rem !important; color: #c7c7c7; font-style: italic;">
-                * Worship times and location is subject to change. But this changes are infrequent. Stay notified 
-                for these changes by signing onto our <a href="/">newsletter</a>.
-            </span>
+            <a class="btn btn-lg btn-outline-light rounded-0" href="#" role="button">PLAN YOUR VISIT</a>
         </div>
-
-        <div id="btn-cont">
-            <a class="ui button">Visit Us</a>
-        </div>
-        
     </div>
-</div>
-
-<!-- EVENTS -->
-<div style="width: 100%; padding-bottom: 0rem; background: #f5f5f5;">
-    <div id="event-thumb-title">upcoming events</div>
-    <div class="slider" style="width: 100%;">
-        <div class="event-thumb-cont">
-            <div class="event-thumb-inner-cont" style="background: white;">
-                <div class="event-thumb-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-                <div class="event-thumb-details">
-                    <div class="event-thumb-title">Morning Sunday Worship</div>
-                    <div class="event-thumb-setting">
-                        <div class="event-thumb-time">
-                            <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
-                        </div>
-                        <div class="event-thumb-location">
-                            <i class="map marker alternate icon"></i> Royal Gardens Community League
-                        </div>
-                    </div>
+    <!--EVENTS-->
+    <div class="py-5">
+        <h3 class="text-center font-weight-light">Upcoming Events</h3>
+        <br>
+        <div class="d-flex">
+            <% for(let i = 0; i < 3; i++){ %>
+            <div class="card mx-2 shadow-lg bg-white rounded" style="width: 30rem;">
+                <img class="card-img-top" src="/images/event/bible-study-event.JPG" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>
-        </div>
+            <% } %>
+        </div>   
     </div>
+    
 </div>
 
-<script src="/javascripts/tiny-slider-activation.js"></script>
+ 
+

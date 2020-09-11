@@ -1,9 +1,9 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const engine = require('ejs-mate');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
 
 //mount routes
@@ -14,6 +14,7 @@ const visitorsLogRouter = require('./routes/visitors-log');
 // const usersRouter = require('./routes/users');
 
 const app = express();
+const port = process.env.PORT;
 
 // view engine setup
 app.engine('ejs', engine);
@@ -48,5 +49,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// app.listen(port);
 
 module.exports = app;

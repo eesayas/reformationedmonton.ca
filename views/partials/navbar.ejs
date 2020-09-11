@@ -1,15 +1,41 @@
-<div id="navbar-cont"> 
-    <div id="logo-cont">
-        <img src="/images/RBCE-LOGO-white.png">
-    </div>
+<link rel="stylesheet" href="/stylesheets/navbar.css">
 
-    <div id="links-cont">
-        <a href="/our-worship" class="link">our worship</a>
-        <a href="/about-us" class="link">about us</a>
-        <a href="/sermons" class="link">sermons</a>
-        <a href="/events" class="link">events</a>
-        <a href="/visit-us" class="link">visit us</a>
-        <a href="/contact-us" class="ui button" id="contact-us-btn">contact us</a>
-        <i class="bars icon"></i>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top w-100">
+    <a class="navbar-brand" href="#">
+        <img src="/images/RBCE-LOGO-white.png" class="w-100 mx-4 my-3">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mx-4">
+        <li class="nav-item dropdown">
+          <a class="nav-link text-light lead" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            OUR WORSHIP
+          </a>
+          <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item lead" href="#">Our Congregational Confession of Faith</a>
+            <a class="dropdown-item lead" href="#">What can you expect?</a>
+            <a class="dropdown-item lead" href="#">Distinctives</a>
+            <a class="dropdown-item lead" href="#">Pastor/Teacher</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light lead" href="#">SERMONS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light lead" href="#">EVENTS</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-light lead" href="#">VISIT US</a>
+        </li>
+        &nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+            <a class="btn red-button rounded-0 btn-lg" role="button">CONTACT US</a>
+        </li>
+      </ul>
     </div>
-</div>
+</nav>
+
+<script src="/javascripts/navbar.js"></script>
