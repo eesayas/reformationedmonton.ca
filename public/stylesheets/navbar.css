@@ -14,8 +14,16 @@
     margin: 0 1rem 1rem 1rem;
 }
 
+.nav-pad{
+    height: 8.3rem;
+}
+
 @media only screen and (max-width: 400px){
     .navbar-brand{
         width: 10rem;
+    }
+
+    .nav-pad{
+        height: 6.8rem;
     }
 }

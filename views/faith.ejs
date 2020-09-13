@@ -1,0 +1,322 @@
+<%- layout("layouts/boilerplate") -%>
+<% include ./partials/navbar-alt.ejs %>
+<% include ./partials/main-display.ejs %>
+
+<style>
+    .btn:focus,.btn:active {
+        outline: none !important;
+        box-shadow: none;
+    }
+</style>
+
+<div class="accordion" id="accordionExample">
+
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn w-100" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <p class="h4">I. The Word of God</p>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <blockquote class="blockquote">
+              <p>
+                We believe that the Bible is the Word of God, fully inspired and 
+                without error in the original manuscripts, written under the inspiration 
+                of the Holy Spirit, and that it has supreme authority in all matters of faith and conduct.
+              </p>
+            </blockquote>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <p class="h4">II. The One True God</p>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <blockquote class="blockquote">
+            <p>
+              We believe in one living and true God, an infinite, simple,
+              and personal spirit, perfect in holiness, wisdom, power, and
+              love, who infallibly foreknows all that shall come to pass,
+              who concerns himself mercifully in the affairs of men, and who
+              hears and answers prayer.
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            III. God's Triune Nature
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that the one God eternally exists in three infinitely excellent, 
+          coequal, and distinct Persons: God the Father, fountain of all being; God the 
+          Son, eternally begotten, not made, without beginning, being of one essence with 
+          the Father; and God the Holy Spirit, proceeding in the full, divine essence, as 
+          a Person, eternally from the Father and the Son. We believe that each Person in 
+          the Godhead is fully and completely God, equal in every divine perfection, and 
+          that they execute distinct but harmonious offices in the work of creation, 
+          providence, and redemption.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingFour">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            IV. The Person of Jesus Christ
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that God sent forth His eternal Son as Jesus the Messiah, conceived by 
+          the Holy Spirit, born of the virgin Mary. We believe that God the Son became flesh, 
+          taking on a fully human nature, so that two whole, perfect, and distinct natures were 
+          inseparably joined together in one Person, without confusion or mixture. We believe 
+          therefore that Jesus Christ was and is truly God and truly man, one Christ and the only 
+          Mediator between God and man. We believe in his sinless life, miracles, and teachings, 
+          his death on the cross and bodily resurrection, and his ascension to heaven and perpetual 
+          intercession for his people.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingFive">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            V. God’s Creation of Humanity
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that God created human beings in his own image and likeness to glorify and 
+          enjoy him forever, and that from the beginning God made them either male or female, 
+          equal as persons in value and worth and yet distinct from and complementary to one another. 
+          We believe that these divinely ordained differences between male and female reflect God’s 
+          original creation design and are meant for human good and flourishing in all areas of life. 
+          We believe that God’s command is that sexual relations be preserved for and remain exclusive 
+          to the divine institution of human marriage, which God ordained as the lifelong union of one 
+          man to one woman as a picture of the unbreakable bond between Christ and his Bride the Church. 
+          We believe that the surpassing worth of a human being as God’s image-bearer and the divine design 
+          of each human being as male or female are to be acknowledged, honoured, and celebrated from the 
+          moment of conception to natural death.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingSix">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            VI. The Fall of Humanity
+          </button>
+        </h5>
+      </div>
+      <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that the first man, Adam, sinned and thereby brought physical, spiritual 
+          and eternal death, which is separation from God, to all of his descendants. We believe 
+          that, as a consequence, all human beings, save Jesus Christ alone, are born with a 
+          sinful nature and sin by choice and are therefore under condemnation.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingSeven">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            VII. Jesus Christ’s Saving Work
+          </button>
+        </h5>
+      </div>
+      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that by His perfect obedience to God and by His suffering and 
+          sacrificial death as the perfect Lamb of God, Jesus Christ obtained forgiveness 
+          of sins and the gift of perfect righteousness for all who trust in God through 
+          Christ. We believe that Christ, through living a perfect life and dying in our 
+          place as a propitiatory and substitutionary atonement for us, the just for the 
+          unjust, absorbed our punishment and appeased the wrath of God against us. We 
+          believe, moreover, that the death of Christ also obtained the omnipotent New 
+          Covenant mercy of repentance and faith for God’s people.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingEight">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+            VIII. The Holy Spirit’s Saving Work
+          </button>
+        </h5>
+      </div>
+      <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that the Holy Spirit proceeds from the Father and Son to convict the 
+          world of sin, righteousness, and judgment, and to regenerate, sanctify, and empower 
+          all who believe in Jesus Christ. We believe that the Holy Spirit indwells every 
+          believer in Christ, and that He is an abiding helper, teacher and guide.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingNine">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+            IX. Regeneration
+          </button>
+        </h5>
+      </div>
+      <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that those who repent and forsake sin and trust Jesus Christ as Savior 
+          have been regenerated by the Holy Spirit and have become new creatures, and so are 
+          delivered from condemnation and receive eternal life.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingTen">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+            X. Justification
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that God freely justifies the ungodly by faith alone apart from works, 
+          pardoning their sins, and reckoning them as righteous and acceptable in His presence. 
+          We believe that faith is thus the sole instrument by which we, as sinners, are united 
+          to Christ, whose perfect righteousness and satisfaction for sins is alone the ground 
+          of our acceptance with God. We believe that the righteousness by which we come into 
+          right standing with God is accomplished for us, outside ourselves, and is imputed to us.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingEleven">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+            XI. Sanctification
+          </button>
+        </h5>
+      </div>
+      <div id="collapseEleven" class="collapse" aria-labelledby="headingEleven" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that the faith by which, alone, one receives the gift of justification, 
+          does not remain alone in the person so justified, but produces, by the Holy Spirit, 
+          the fruit of love and leads necessarily to sanctification. We believe that faith that 
+          does not yield the fruit of good works is dead, being no true faith.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingTwelve">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+            XII. Christian Conduct
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that a Christian should live for the glory of God and the well-being 
+          of his fellow men; that his conduct should be blameless before the world; that he 
+          should be a faithful steward of his possessions; and that he should seek to realize 
+          for himself and others the full stature of maturity in Christ.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingThirteen">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+            XIII. The Church
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe in the universal church, a living spiritual body of which Christ is the 
+          head and all regenerated persons are members. We believe in the local church, 
+          consisting of a company of believers in Jesus Christ, baptized in the name of the 
+          Father and of the Son and of the Holy Spirit, and associated for worship, work, and 
+          fellowship. We believe that God has laid upon the members of the local church the 
+          primary task of giving the gospel of Jesus Christ to a lost world. We believe that 
+          Christ’s atonement for sin warrants and impels a universal offering of the gospel to 
+          all persons, so that to every person it may be truly said, “Whosoever will may come 
+          for cleansing at this fountain of life, and whoever does come, Jesus will not cast out.” 
+          We believe that local churches are called by biblical example and by their union in 
+          Christ with the universal church to cooperate with one another in our mission to 
+          proclaim the Kingdom on earth.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingFourteen">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+            XIV. The Ordinances
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe that the Lord Jesus Christ has committed two ordinances to the local church, 
+          baptism and the Lord's Supper. We believe that Christian baptism, performed in the name 
+          of the Father and of the Son and of the Holy Spirit, is the sign of the New Covenant in 
+          Christ and proclaims our union with him in his death and resurrection. We believe that 
+          the Lord's Supper was instituted by Christ for commemoration of His death. We believe that 
+          these two ordinances should be observed and administered until the return of the Lord 
+          Jesus Christ.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingFifteen">
+        <h5 class="mb-0">
+          <button class="btn w-100 collapsed font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+            XV. The Last Things
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen" data-parent="#accordionExample">
+        <div class="card-body">
+          We believe in the personal and visible return of the Lord Jesus Christ to earth and 
+          the establishment of His Kingdom. We believe in the resurrection of the body, the 
+          final judgment, the eternal joy of the righteous and the endless suffering of the wicked.
+        </div>
+      </div>
+    </div>
+
+</div>

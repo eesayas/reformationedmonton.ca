@@ -1,0 +1,50 @@
+#main-display{
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    overflow: hidden;
+}
+
+#main-display-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#main-display-gradient{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(transparent, black);
+}
+
+#main-display > p{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    font-size: 4rem;
+    margin: 1rem;
+}
+
+@media only screen and (max-width: 540px){
+    #main-display > p{
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    #main-display > p{
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (max-width: 360px){
+    #main-display > p{
+        font-size: 2rem;
+    }
+}
