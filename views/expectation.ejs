@@ -1,0 +1,48 @@
+<%- layout("layouts/boilerplate") -%>
+<% include ./partials/navbar-alt.ejs %>
+<% include ./partials/main-display.ejs %>
+
+<style>
+    @media screen and (max-width:735px) {
+        .button-other {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="m-5">
+    <blockquote class="blockquote">
+        It is our desire to place the preaching and teaching of 
+        God’s Word at the forefront of our time together in worship. 
+        Worship consists of both singing, as a congregation, the 
+        praises of our God and hearing from His inspired Word so that 
+        we may: know God more, love God with greater affection each and 
+        every day, and provoke ourselves to serving both God and one 
+        another as we are sanctified through the work of the Holy 
+        Spirit in obedience to the Word of God.
+    </blockquote>
+    <blockquote class="blockquote">
+        It is our habit to begin our service with the singing of hymns, 
+        followed by the preaching of God’s Word. We believe in the value 
+        of expository preaching. Expository preaching is simply following 
+        the complete body of the chosen text, verse by verse, to give us 
+        an accurate and contextual understanding of what scripture is teaching.
+    </blockquote>
+    <blockquote class="blockquote">
+        Following the “formal” part of the service, we take part in a meal together 
+        followed by the singing of more hymns, songs and spiritual songs. We also 
+        will spend time examining the sermon from that morning and then we will take 
+        time to pray as a congregation for the church, God’s people, and other 
+        requests as they are made known. 
+    </blockquote>
+</div> 
+
+<div class="d-flex">
+    <div class="mx-auto button-other" role="group">
+        <a class="btn btn-outline-dark m-2 btn-lg" href="/faith">Our Congregational Confession of Faith</a>
+        <a class="btn btn-outline-dark m-2 btn-lg" href="/distinctives">Distinctives</a>
+        <a class="btn btn-outline-dark m-2 btn-lg" href="/pastor">Pastor/Teacher</a>
+    </div>
+</div>
+<br>

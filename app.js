@@ -11,10 +11,9 @@ const indexRouter = require('./routes/index');
 const sermonsRouter = require('./routes/sermons');
 const eventsRouter = require('./routes/events');
 const visitorsLogRouter = require('./routes/visitors-log');
-// const usersRouter = require('./routes/users');
 
 const app = express();
-const port = process.env.PORT;
+// const port = process.env.PORT;
 
 // view engine setup
 app.engine('ejs', engine);
@@ -32,7 +31,6 @@ app.use('/', indexRouter);
 app.use('/sermons', sermonsRouter);
 app.use('/events', eventsRouter);
 app.use('/visitors-log', visitorsLogRouter);
-// app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
