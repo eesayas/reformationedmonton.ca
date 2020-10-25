@@ -1,32 +1,23 @@
-<%- layout('layouts/boilerplate') -%>
-<% include ../partials/navbar-black %>
+<%- layout("layouts/boilerplate") -%>
+<% include ../partials/navbar-alt.ejs %>
+<link rel="stylesheet" href="./stylesheets/sermons/index.css">
 
-<div id="video-cont">
-    <div id="prev">
-        <div>
-            <i class="chevron left icon"></i>
-            <div id="prev-date-cont">
-                <div>Jan 01 2020</div>
+
+<% for(let i = 0; i < 3; i++){ %>
+
+    <div class="card mx-5 my-3 shadow bg-light" role="button">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="/images/event/bible-study-event.JPG" class="card-img" alt="card image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
+          </div>
         </div>
     </div>
 
-    <div id="video">
-        <iframe width="100%" height="100%" id="video-data"
-        src="https://www.youtube.com/embed/LKXDiVyq68s?autoplay=1" 
-        frameborder="0" allow="accelerometer; autoplay; 
-        encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen></iframe>
-        <!-- hello -->
-    </div>
-
-    <div id="next">
-        <div>
-            <div id="next-date-cont">
-                <div>Jan 01 2020</div>
-            </div>
-            <i class="chevron right icon"></i>
-        </div>
-    </div>
-
-</div>
+<% } %>
