@@ -5,15 +5,32 @@ const engine = require('ejs-mate');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require("mongoose");
+const passport = require("passport");
+const session = require("express-session");
+const User = require("./model/user");
 
 //mount routes
 const indexRouter = require('./routes/index');
 const sermonsRouter = require('./routes/sermons');
 const eventsRouter = require('./routes/events');
-const visitorsLogRouter = require('./routes/visitors-log');
+const visitRouter = require('./routes/visit');
 
 const app = express();
 // const port = process.env.PORT;
+
+// connect to mongo db
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+});
+
+const db = mongoose.connection;
+
+//handle connection events
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', () => {
+    console.log("you're connected to Reformation Baptist Church of Edmonton db...");
+});
 
 // view engine setup
 app.engine('ejs', engine);
@@ -26,11 +43,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+	secret: process.env.EXPRESS_SESSION_SECRET,
+	resave: false,
+	saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 //connect routers into routes
 app.use('/', indexRouter);
 app.use('/sermons', sermonsRouter);
 app.use('/events', eventsRouter);
-app.use('/visitors-log', visitorsLogRouter);
+app.use('/visits', visitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

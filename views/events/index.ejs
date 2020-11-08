@@ -1,122 +1,21 @@
-<%- layout('layouts/boilerplate') -%>
-<% include ../partials/navbar-black.ejs %>
-<style>
-    #events-column{
-        display: flex !important;
-        flex-direction: column;
-        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        margin: 1rem 0;
-    }
+<%- layout("layouts/boilerplate") -%>
+<% include ../partials/navbar-alt.ejs %>
 
-    .event-card{
-        display: flex;
-        /* width: 700px; */
-        border-top: 1px solid #d5d8de;
-        border-right: 1px solid #d5d8de;
-        margin: 1rem auto;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        transition: 0.3s;
-        user-select: none;
-        cursor: pointer;
-    }
+<% for(let i = 0; i < 3; i++){ %>
 
-    .event-card:hover{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20), 0 6px 20px 0 rgba(0, 0, 0, 0.50);
-    }
-
-    .event-card > .card-img{
-        width: 450px;
-        height: 250px;
-        background-size: cover; 
-        background-repeat: no-repeat;
-        background-position: center; 
-    }
-
-    .card-detail-cont{
-        /* border: 1px solid blue; */
-    }
-
-    .card-detail-cont > div{
-        position: relative;
-        /* border: 1px solid red; */
-        height: 100%;
-    }
-
-    .card-detail-cont .card-title{
-        text-transform: capitalize;
-        font-weight: bold;
-        font-size: 1.5rem !important;
-        letter-spacing: 0.2rem;
-        /* margin: 1rem 0; */
-    }
-
-    .card-detail-cont .card-title{
-        display: table;
-        font-size: 1.2rem;
-        white-space: nowrap;
-        margin: 1rem;
-        /* border: 1px solid red; */
-    }
-
-    .card-setting{
-        position: absolute;
-        margin: 1rem !important;
-        padding-bottom: 1rem;
-        bottom: 0 !important;
-        display: table;
-        /* font-size: 1.2rem; */
-        white-space: nowrap;
-        letter-spacing: 0.1rem;
-        /* border: 1px solid red; */
-    }
-    
-    .card-setting > div{
-        margin: 0.5rem 0;
-    }
-
-    .card-caption{
-        display: table;
-        color: #9499a1;
-        font-style: italic;
-        margin: 1rem;
-        letter-spacing: 0.1rem;
-        /* font-size: 1.2rem; */
-    }
-
-
-</style>
-
-<div style="width: 100%;">
-    <div id="events-column">
-    
-        <div class="event-card">
-            <div class="card-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-            <div class="card-detail-cont">
-                <div>
-                    <div class="card-title">morning sunday worship</div>
-                    <div class="card-caption">Join us this upcoming Sunday to worship our King!</div>
-                    <div class="card-setting">
-                        <div class="card-time"><i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM</div>
-                        <div class="card-location"><i class="map marker alternate icon"></i> Royal Gardens Community League</div>
-                    </div>
-                </div>
+    <div class="card mx-5 my-3 shadow bg-light" role="button">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="/images/event/bible-study-event.JPG" class="card-img" alt="card image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
+          </div>
         </div>
-
-        <div class="event-card">
-            <div class="card-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-            <div class="card-detail-cont">
-                <div>
-                    <div class="card-title">morning sunday worship</div>
-                    <div class="card-caption">Join us this upcoming Sunday to worship our King!</div>
-                    <div class="card-setting">
-                        <div class="card-time"><i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM</div>
-                        <div class="card-location"><i class="map marker alternate icon"></i> Royal Gardens Community League</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
     </div>
 
-</div>
+<% } %>

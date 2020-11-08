@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { indexEvents, showEvent } = require('../controllers/events');
+const title = 'Reformation Baptist Church of Edmonton';
 
-router.get('/', indexEvents);
-router.get('/:date_and_time', showEvent);
+/**
+ * @route GET /events
+ * @desc INDEX - This will render out all events
+ * @access Public
+ */
+router.get('/', (req, res, next) => {
+    res.render("events/index", { title })
+});
+
+
 
 module.exports = router;
