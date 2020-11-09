@@ -1,23 +1,42 @@
 <%- layout("layouts/boilerplate") -%>
 <% include ../partials/navbar-alt.ejs %>
-<link rel="stylesheet" href="./stylesheets/sermons/index.css">
 
+<div class="d-flex mx-5 my-3">
+  <div class="dropdown ml-auto">
+    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Archive
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <% archive.forEach( marker => { %>
+        <a class="dropdown-item" href="/sermons?archive=<%=marker.query%>"><%=marker.text%></a>
+      <% }); %>
+    </div>
+  </div>
+</div>
 
-<% for(let i = 0; i < 3; i++){ %>
+<% sermons.forEach(sermon => { %>
 
-    <div class="card mx-5 my-3 shadow bg-light" role="button">
+    <a href="/sermons/<%=sermon._id%>" + sermon._id class="card mx-5 my-3 shadow bg-light" role="button" style="text-decoration: none">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="/images/event/bible-study-event.JPG" class="card-img" alt="card image">
+            <img src="<%=sermon.thumbnail%>" class="card-img" alt="card image">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title text-dark"><%=sermon.title%></h5>
+              <p class="card-text text-dark"><%=sermon.desc%></p>
+              <p class="card-text"><small class="text-muted sermon-date"><%=sermon.uploadDate%></small></p>
             </div>
           </div>
         </div>
-    </div>
+      </a>
 
-<% } %>
+<% }); %>
+
+<script>
+  $('.dropdown-toggle').dropdown();
+  
+  $(".sermon-date").each(function(index){
+    $(this).text( moment($(this).text()).format("LL") );
+  });
+</script>

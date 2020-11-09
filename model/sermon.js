@@ -6,8 +6,7 @@ const SermonSchema = new Schema({
     title: String,
     desc: String,
     url: String,
-    authorName: String,
-    embedCode: String, 
+    thumbnail: String,
 }, {
     timestamps: true,
 });

@@ -14,7 +14,7 @@ const User = require("./model/user");
 const indexRouter = require('./routes/index');
 const sermonsRouter = require('./routes/sermons');
 const eventsRouter = require('./routes/events');
-const visitRouter = require('./routes/visit');
+const visitRouter = require('./routes/visits');
 
 const app = express();
 // const port = process.env.PORT;
@@ -60,7 +60,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/', indexRouter);
 app.use('/sermons', sermonsRouter);
 app.use('/events', eventsRouter);
-app.use('/visits', visitRouter);
+app.use('/visit', visitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

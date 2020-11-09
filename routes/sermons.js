@@ -2,14 +2,44 @@ const express = require('express');
 const router = express.Router();
 const title = 'Reformation Baptist Church of Edmonton';
 const Sermon = require("../model/sermon");
+const moment = require("moment");
 
 /**
  * @route GET /sermons
  * @desc INDEX - This will render all the sermons from db
  * @access Public
  */
-router.get('/', (req, res, next) => {
-    res.render('sermons/index', { title });
+router.get('/', async(req, res, next) => {
+
+    let sermons = await Sermon.find({})
+        .select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt");
+
+    // get all archive month-year
+    let archive = [ ... new Set(sermons.map(sermon => {
+        return {
+            text: `${moment(sermon.uploadDate).format("MMMM YYYY")}`,
+            query: `${parseInt(moment(sermon.uploadDate).get("month")) + 1}-${moment(sermon.uploadDate).get("year")}`
+        };
+    }))];
+
+    // if query exists
+    if(req.query.archive){
+        let month = req.query.archive.split("-")[0] - 1;
+        let year = req.query.archive.split("-")[1];
+
+        let lowerBound = new Date(moment().set('year', year).set("month", month).startOf("month"));
+        let upperBound = new Date(moment().set('year', year).set("month", month).endOf("month"));
+
+        sermons = await Sermon.find({
+            uploadDate: { "$gte": lowerBound, "$lt": upperBound }
+        }).sort({uploadDate: 1});
+
+        return res.render("sermons/index", { title , sermons, archive });
+    }
+
+    // if no query
+    sermons = await Sermon.find({}).sort({uploadDate: 1}).limit(30);
+    return res.render('sermons/index', { title , sermons, archive });
 });
 
 /**
@@ -27,17 +57,20 @@ router.get('/new', (req, res, next) => {
  * @access Private
  */
 router.post("/", async(req, res, next) => {
-    // console.log(req.body);
-    try{
-        const sermon = await Sermon.create(req.body);
-        if(!sermon) throw Error("Something went wrong while creating Sermon");
+    let { uploadDate, title, desc, url } = req.body;
+    
+    //configure thumbnail
+    let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
+    let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    url = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
-        // go to SHOW route   
-        res.redirect(`/sermons/${sermon._id}`);
-        // res.send(req.body);
-    } catch(e){
-        res.status(400).json({msg: e.message});
-    }
+    const sermon = await Sermon.create({
+        uploadDate, title, desc, url, thumbnail
+    });
+    if(!sermon) throw Error("Something went wrong while creating Sermon");
+
+    // if request came from browser
+    if(!req.body.auth) return res.redirect(`/sermons/${sermon._id}`);
 });
 
 /**
@@ -46,14 +79,10 @@ router.post("/", async(req, res, next) => {
  * @access Public
  */
 router.get("/:sermon_id", async(req, res, next) => {
-    try{
-        const sermon = await Sermon.findById(req.params.sermon_id);
-        if(!sermon) throw Error("Something went wrong while showing Sermon");
+    const sermon = await Sermon.findById(req.params.sermon_id);
+    if(!sermon) throw Error("Something went wrong while showing Sermon");
 
-        res.render("sermons/show", { title, sermon });
-    } catch(e){
-        res.status(400).json({msg: e.message});
-    }
+    return res.render("sermons/show", { title, sermon });
 });
 
 /**
@@ -62,14 +91,10 @@ router.get("/:sermon_id", async(req, res, next) => {
  * @access Private
  */
 router.get("/:sermon_id/edit", async(req, res, next) => {
-    try{
-        const sermon = await Sermon.findById(req.params.sermon_id);
-        if(!sermon) throw Error("Something went wrong while retrieving Sermon");
+    const sermon = await Sermon.findById(req.params.sermon_id);
+    if(!sermon) throw Error("Something went wrong while retrieving Sermon");
 
-        res.render("sermons/edit", { title, sermon });
-    } catch(e){
-        res.status(400).json({msg: e.message});
-    }
+    return res.render("sermons/edit", { title, sermon });
 });
 
 /**
@@ -78,24 +103,20 @@ router.get("/:sermon_id/edit", async(req, res, next) => {
  * @access Private
  */
 router.put("/:sermon_id", async(req, res, next) => {
-    const { CreatedAt, Title, Description, Url, AuthorName, EmbedCode } = req.body;
-    try{
-        const sermon = await Sermon.findById(req.params.sermon_id);
-        if(!sermon) throw Error("Something went wrong while retrieving Sermon to be updated");
+    const { uploadDate, title, desc, url, author, embedCode } = req.body;
 
-        sermon.uploadDate = CreatedAt;
-        sermon.title = Title;
-        sermon.desc = Description;
-        sermon.url = Url;
-        sermon.authorName = AuthorName;
-        sermon.embedCode = EmbedCode;
+    const sermon = await Sermon.findById(req.params.sermon_id);
+    if(!sermon) throw Error("Something went wrong while retrieving Sermon to be updated");
 
-        await sermon.save();
+    sermon.uploadDate = uploadDate;
+    sermon.title = title;
+    sermon.desc = desc;
+    sermon.url = url;
+    sermon.authorName = author;
+    sermon.embedCode = embedCode;
 
-        res.redirect(`/sermons/${sermon._id}`);
-    } catch(e){
-        res.status(400).json({msg: e.message});
-    }
+    await sermon.save();
+    return res.redirect(`/sermons/${sermon._id}`);
 });
 
 /**
