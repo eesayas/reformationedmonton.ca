@@ -109,7 +109,7 @@ router.post("/", async(req, res, next) => {
         }
 
         //send
-        var mail = transporter.sendMail(mailOptions);
+        mail = transporter.sendMail(mailOptions);
         if(!mail) throw Error(`Email was not sent to admins`);
 
         res.status(200).json({success: true});
