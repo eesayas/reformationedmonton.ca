@@ -28,3 +28,5 @@ $(".navbar-toggler-icon").on("click", function(){
         $(".navbar").removeClass("navbar-blue");
     }
 });
+
+$('#navbarDropdown').dropdown();

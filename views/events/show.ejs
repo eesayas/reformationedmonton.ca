@@ -1,108 +1,28 @@
-<%- layout('layouts/boilerplate') -%>
-<% include ../partials/navbar-black.ejs %>
-<div id="event-show-cont">
-    
-    <div id="event-show-main">
-        <div style="background-image: url('/images/event/bible-study-event.JPG')" id="event-show-img"></div>
-        <div id="event-show-background"></div>
-        
-        <div id="event-show-details">
-            <div id="event-show-title">morning sunday worship</div>
+<%- layout("layouts/boilerplate") -%>
+<% include ../partials/navbar-alt.ejs %>
+<% include ../partials/event-display.ejs %>
 
-            <div id="event-show-setting">
-                <div id="event-show-time">
-                    <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
-                </div>
-                <div id="event-show-location">
-                    <i class="map marker alternate icon"></i> Royal Gardens Community League
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="m-5">
+    <h4>Schedule</h4>
+    <dl class="row">
+        <% event.schedule.forEach(act => { %>
+            <dt class="col-sm-3"><%=act.activity%></dt>
+            <dd class="col-sm-9"><%=act.time%></dd>
+        <% }); %>
+    </dl>
 
+    <h4>Message</h4>
+    <blockquote class="blockquote">
+        <p class="mb-0">
+            <%=event.msg%> 
+        </p>
+    </blockquote>
 
-    <div id="schedule-cont">
-        <div id="title">schedule</div>
-        <div id="body">
-            <div class="item"><div>Prayer Time</div> <div>10:45 am</div></div>
-            <div class="item"><div>Singing of Hymns</div> <div>10:50 am</div></div>
-            <div class="item"><div>Sermon</div> <div>11:00 am</div></div>
-            <div class="item"><div>Singing of Hymns & Prayer</div> <div>11:50am</div></div>
-            <div class="item"><div>Lunch</div> <div>12:00pm</div></div>
-            <div class="item"><div>Bible Study</div> <div>1:00pm</div></div>
-            <div class="item"><div>Prayer Meeting</div> <div>2:00pm</div></div>
-        </div>
-    </div>
+    <h4>Link</h4>
+    <blockquote class="blockquote">
+        <a href="<%=event.link%>"><%=event.link%></a>
+    </blockquote>
 
-    <div id="schedule-visit">
-        <div id="address">
-            <span>Royal Gardens Community League</span> <br>
-            4030 117 Street NW, <br>
-            Edmonton, Alberta T6J 2W5 <br>
-        </div>
-        <div id="button-cont">
-            <a class="ui button">plan your visit</a>
-        </div>
-    </div>
-
-
-    <div style="width: 100%; padding-bottom: 0rem; background: #f5f5f5;">
-    <div id="event-thumb-title" style="padding: 4.5rem 0 2.5rem 0;">upcoming events</div>
-    <div class="slider" style="width: 100%;">
-        <div class="event-thumb-cont">
-            <div class="event-thumb-inner-cont" style="background: white;">
-                <div class="event-thumb-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-                <div class="event-thumb-details">
-                    <div class="event-thumb-title">Morning Sunday Worship</div>
-                    <div class="event-thumb-setting">
-                        <div class="event-thumb-time">
-                            <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
-                        </div>
-                        <div class="event-thumb-location">
-                            <i class="map marker alternate icon"></i> Royal Gardens Community League
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="event-thumb-cont">
-            <div class="event-thumb-inner-cont" style="background: white;">
-                <div class="event-thumb-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-                <div class="event-thumb-details">
-                    <div class="event-thumb-title">Morning Sunday Worship</div>
-                    <div class="event-thumb-setting">
-                        <div class="event-thumb-time">
-                            <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
-                        </div>
-                        <div class="event-thumb-location">
-                            <i class="map marker alternate icon"></i> Royal Gardens Community League
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="event-thumb-cont">
-            <div class="event-thumb-inner-cont" style="background: white;">
-                <div class="event-thumb-img" style="background-image: url('/images/event/bible-study-event.JPG')"></div>
-                <div class="event-thumb-details">
-                    <div class="event-thumb-title">Morning Sunday Worship</div>
-                    <div class="event-thumb-setting">
-                        <div class="event-thumb-time">
-                            <i class="calendar alternate outline icon"></i> Sunday, February 9 2020 at 10:30 AM
-                        </div>
-                        <div class="event-thumb-location">
-                            <i class="map marker alternate icon"></i> Royal Gardens Community League
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <small class="text-muted">Updated November 9 2020</small>
 </div>
-    
-</div>
-
-<script src="/javascripts/tiny-slider-activation.js"></script>
+ 

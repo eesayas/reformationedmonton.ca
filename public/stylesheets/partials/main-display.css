@@ -31,6 +31,27 @@
     margin: 1rem;
 }
 
+#subtext{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    margin: 1rem;
+    /* line-height: 2.3rem; */
+}
+
+#subtext > p{
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    font-size: 4rem;
+    margin: 0.5rem auto;
+    line-height: 4rem;
+}
+
+#subtext small{
+    font-size: 1.1rem;
+}
+
+
 @media only screen and (max-width: 540px){
     #main-display > p{
         font-size: 3rem;
