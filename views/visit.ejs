@@ -1,35 +1,140 @@
-<%- layout('layouts/boilerplate') -%>
-<% include ./partials/navbar-black %>
+<%- layout("layouts/boilerplate") -%>
+<% include ./partials/navbar-alt.ejs %>
+<% include ./partials/main-display.ejs %>
 
-<div id="visit-cont">
+<form class="m-5" action="/visit" method="POST">
+    <h2>Let us know about you!</h2>
+    <br>
 
-    <div>
-        <div id="worship-rem">
-            <div>Sunday Morning Worship</div>
-            <div>at</div>
-            <div>10:30 am</div>
-        </div>
-        
-        <div id="address">
-            <span>Royal Gardens Community League</span><br>
-            4030 117 Street NW, <br>
-            Edmonton, Alberta T6J 2W5 <br>
-        </div>
-        
-        <div id="map"></div>
-        <br>
-        <div style="font-style: italic; color: #87847a;">
-            * As we rent this property, occasionally worship times and location may change 
-            depending on previous commitments the League has made to others in the community.
-            Should the location change, it will be noted on the website. Normally these changes 
-            are infrequent. 
-        </div>
-
+    <!-- NAME -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Enter a name to identify yourself and/or others" id="name" name="name" required>
     </div>
-    <div id="visitor-log">
-        <div>Have you visited us? or Planning to visit us?</div>
-        <a class="ui button" href="/visitors-log/new">visitor's log</a>
-    </div>
-</div>
 
-<script src="/javascripts/google-maps-integration.js">
+    <!-- EMAIL AND PHONE NUMBER -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="desc">Email</label>
+            <input type="text" class="form-control" placeholder="Email Address" id="desc" name="email" required>
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" placeholder="Phone Number (optional)" id="phone" name="phone">
+        </div>
+    </div>
+
+    <!-- EVENT AND DATE -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="event">Choose an event</label>
+            <select id="event" class="form-control">
+                <option selected>Choose...</option>
+
+                <!-- the events from db -->
+                <% events.forEach( event => { %>
+                    <option data-id="<%=event._id%>" data-day="<%=event.dayOfWeek%>">
+                        <%=event.title%>
+                    </option>
+                <% }); %>
+
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="date">Pick a Date</label><br>
+            <input class="form-control" data-toggle="datepicker" name="date" id="date" placeholder="Pick a Date" disabled required>
+        </div>
+    </div>
+
+    <!-- MESSAGE -->
+    <div class="form-group">
+        <label for="msg">Message</label>
+        <textarea class="form-control" placeholder="Anything you want to let us know?" id="msg" name="msg"></textarea>
+    </div>
+    <p class="text-danger err-msg" hidden>Please choose an event and a date.</p>
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">SUBMIT</button>
+    </div>
+</form>
+
+<!-- This is the modal that will be shown if submission is successful -->
+
+<script>
+    // define enum for daysOfWeek
+    const day = {
+        Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6
+    }
+
+    // when an event is selected enable datepicker
+    $("#event").on("change", function(){
+
+        // enable
+        $("#date").prop("disabled", false);
+
+        // get dayOfWeek of selected event
+        let dayOfWeek = $(this).find(":selected").data("day");
+
+        // set dates that are clickable in date picker
+        $('[data-toggle="datepicker"]').datepicker({
+            filter: function(date){
+                if(date.getDay() !== day[dayOfWeek]){
+                    return false;
+                }
+            },
+
+            startDate: new Date(), // disable past dates
+        });
+    });
+
+
+    // on submit
+    $("form").submit(function(event){
+        event.preventDefault();
+
+        let formData = $("form").serializeArray();
+
+        //if date is undefined
+        if(!formData.find(data => data.name === "date")){
+            $(".err-msg").prop("hidden", false);
+            return;
+        }
+
+        // assembe submission
+        let submission = {
+            name: formData.find(data => data.name === "name").value,
+            email: formData.find(data => data.name === "email").value,
+            phone: formData.find(data => data.name === "phone").value,
+            event: $(this).find(":selected").data("id"),
+            date: formData.find(data => data.name === "date").value,
+            msg: formData.find(data => data.name === "msg").value,
+        }
+
+        // make post request
+        $.post("/visit", { data: JSON.stringify(submission) },
+            //on success
+            function(data){
+                // show success modal
+                $("body").append(
+                    `
+                    <div class="position-fixed fixed-top w-100 h-100 d-flex justify-content-center d-none" style="background-color: rgba(0, 0, 0, .5);">
+                        <div class="position-absolute bg-light w-75 my-5 p-5 rounded">
+                            <div class="alert alert-success" role="alert">
+                                Submission successful!
+                                <ul>
+                                    <li>We will see you on ${moment(submission.date).format("LL - dddd")}</li>
+                                    <li>An email confirmation was sent to you.</li>
+                                </ul>
+                            </div>
+                            <a type="button" href="/visit" class="btn btn-success">OKAY</a>
+                        </div>
+                    </div>
+                    `
+                );
+            }
+
+        );
+    });
+</script>

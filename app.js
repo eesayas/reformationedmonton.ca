@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const sermonsRouter = require('./routes/sermons');
 const eventsRouter = require('./routes/events');
 const visitRouter = require('./routes/visits');
+const contactRouter = require("./routes/contacts");
 
 const app = express();
 // const port = process.env.PORT;
@@ -61,6 +62,7 @@ app.use('/', indexRouter);
 app.use('/sermons', sermonsRouter);
 app.use('/events', eventsRouter);
 app.use('/visit', visitRouter);
+app.use('/contact', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

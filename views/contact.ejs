@@ -1,75 +1,44 @@
-<%- layout('layouts/boilerplate') -%>
-<% include ./partials/navbar-black %>
-<style>
-    #contact-form-cont{
-        /* width: 100%; */
-        /* background: #F0EDED; */
-    }
+<%- layout("layouts/boilerplate") -%>
+<% include ./partials/navbar-alt.ejs %>
+<% include ./partials/main-display.ejs %>
 
-    #contact-form{
-        padding: 5rem 0;
-        margin: 0 auto;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        /* border: 1px solid red; */
-        width: 25rem;
-    }
+<form class="m-5" action="/visit" method="POST">
+    <h2>Contact Us Here</h2>
+    <br>
+    <p class="lead"><i class="mail alternate outline icon"></i> reformationedmonton@gmail.com</p>
+    <p class="lead"><i class="phone icon"></i>(780) 278 6076</p>
+    <br>
 
-    #contact-form > #title{
-        font-size: 1.7em;
-        text-transform: capitalize;
-    }
-
-    #contact-form input, #contact-form textarea{
-        /* width: 100% !important; */
-        font-size: 1.2rem;
-        letter-spacing: 0.1rem;
-        background: none;
-        border: none;
-        border-bottom: 1px solid #707070;
-        outline: none;
-        /* width: 25rem; */
-        font-weight: lighter;
-        padding: 0.8rem 1rem;
-        margin: 0 0 1rem 0;
-        font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    }
-
-    #contact-form textarea{
-        height: 10rem;
-    }
-
-    #contact-form .ui.button{
-        border-radius: 0;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        background: #FE424D;
-        color: white;
-        font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    }
-
-    #contact-form #email-message{
-        text-align: left;
-        margin: 1rem 0;
-        line-height: 2rem;
-    }
-</style>
-<div id="contact-form-cont">
-
-    <div id="contact-form">
-
-        <div id="title">contact us</div>
-        <input type="name" placeholder="Name">
-        <input type="name" placeholder="Email">
-        <br>
-        <textarea placeholder="Message"></textarea>
-        <a class="ui button">submit</a>
-
-        <!-- <div id="email-message">You could also email as at <br><a><i class="envelope outline icon"></i>reformationedmonton@gmail.com</a></div> -->
-
-      
-
+    <h2>Or write your inquiry below</h2>
+    <br>
+    <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" class="form-control" placeholder="Enter a name to identify yourself and/or others" id="title" name="title">
     </div>
 
-</div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="desc">Email</label>
+            <input type="text" class="form-control" placeholder="Email Address" id="desc" name="desc">
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="url">Phone Number</label>
+            <input type="text" class="form-control" placeholder="Phone Number (optional)" id="url" name="url">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="msg">Message</label>
+        <textarea class="form-control" placeholder="Enter Event Message" id="msg" name="msg"></textarea>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">SUBMIT</button>
+    </div>
+</form>
+
+<script>
+    $('[data-toggle="datepicker"]').datepicker();
+</script>
