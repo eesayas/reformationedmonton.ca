@@ -2,6 +2,10 @@
 <% include ../partials/navbar-alt.ejs %>
 
 <div class="d-flex mx-5 my-3">
+  <% if(currentUser){ %>
+    <a href="/sermons/new" class="btn btn-primary rounded-0 mr-auto">ADD NEW SERMON</a>
+  <% } %>
+
   <div class="dropdown ml-auto">
     <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Archive

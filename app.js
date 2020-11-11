@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
 const User = require("./model/user");
+const methodOverride = require('method-override');
 
 //mount routes
 const indexRouter = require('./routes/index');
@@ -43,6 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use(session({
 	secret: process.env.EXPRESS_SESSION_SECRET,

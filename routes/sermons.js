@@ -11,16 +11,20 @@ const moment = require("moment");
  */
 router.get('/', async(req, res, next) => {
 
-    let sermons = await Sermon.find({})
-        .select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt");
+    let sermons = await Sermon.find({}).select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt");
+
+    sermons = sermons.map(sermon => {
+        return moment(sermon.uploadDate).format("MMMM YYYY");
+    });
 
     // get all archive month-year
-    let archive = [ ... new Set(sermons.map(sermon => {
+    let archive = Array.from(new Set(sermons));
+    archive = archive.map(archive => {
         return {
-            text: `${moment(sermon.uploadDate).format("MMMM YYYY")}`,
-            query: `${parseInt(moment(sermon.uploadDate).get("month")) + 1}-${moment(sermon.uploadDate).get("year")}`
-        };
-    }))];
+            text: archive,
+            query: `${moment().month(archive.split(" ")[0]).format("M")}-${moment().year(archive.split(" ")[1]).format("Y")}`
+        }
+    });
 
     // if query exists
     if(req.query.archive){
@@ -62,10 +66,9 @@ router.post("/", async(req, res, next) => {
     //configure thumbnail
     let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-    url = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
     const sermon = await Sermon.create({
-        uploadDate, title, desc, url, thumbnail
+        uploadDate, title, desc, url: videoId, thumbnail
     });
     if(!sermon) throw Error("Something went wrong while creating Sermon");
 
@@ -103,7 +106,13 @@ router.get("/:sermon_id/edit", async(req, res, next) => {
  * @access Private
  */
 router.put("/:sermon_id", async(req, res, next) => {
-    const { uploadDate, title, desc, url, author, embedCode } = req.body;
+    let { uploadDate, title, desc, url } = req.body;
+    
+    //configure thumbnail
+    let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
+    let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+    console.log(videoId);
 
     const sermon = await Sermon.findById(req.params.sermon_id);
     if(!sermon) throw Error("Something went wrong while retrieving Sermon to be updated");
@@ -111,9 +120,8 @@ router.put("/:sermon_id", async(req, res, next) => {
     sermon.uploadDate = uploadDate;
     sermon.title = title;
     sermon.desc = desc;
-    sermon.url = url;
-    sermon.authorName = author;
-    sermon.embedCode = embedCode;
+    sermon.url = videoId;
+    sermon.thumbnail = thumbnail;
 
     await sermon.save();
     return res.redirect(`/sermons/${sermon._id}`);
