@@ -35,7 +35,7 @@
 
         <div class="form-row act-row">
             <div class="form-group col-md-6">
-                <label>Activity # 1</label>
+                <label class="act-label">Activity # 1</label>
                 <input id="activity" class="form-control" placeholder="Enter Activity Name" name="activity[]">
             </div>
     
@@ -85,130 +85,8 @@
     <br>
     <div class="form-group">
         <button type="submit" class="btn btn-success">SUBMIT</button>
-        <a type="button" href="/sermons" class="btn btn-secondary">CANCEL</a>
+        <a type="button" href="/events" class="btn btn-secondary">CANCEL</a>
     </div>
 </form>
 
-<script>
-    $('[data-toggle="datepicker"]').datepicker();
-    $('#time').timepicker();
-
-    $('.scheduleTime').timepicker();
-
-    // on click, add new activity
-    let actNo = 1;
-    $('#addAct').on("click", function(){
-        $("#act-cont").append(
-            `
-            <div class="form-row act-row">
-                <div class="form-group col-md-6">
-                    <label>Activity # ${++actNo}</label>
-                    <input class="form-control" placeholder="Enter Activity Name" name="activity[]">
-                </div>
-        
-                <div class="form-group col-md-6">
-                    <label>&nbsp;</label>
-                    <input class="scheduleTime form-control" class="form-control" placeholder="Select Time" name="act-time[]">
-                </div>
-
-                <button type="button" class="ml-auto mr-1 btn btn-danger deleteBtn">DELETE</button>
-            </div>
-            `
-        );
-
-        $('.scheduleTime').timepicker();
-
-        // on click delete
-        $(".deleteBtn").each(function(){
-            $(this).on("click", function(){
-                let index = $(".deleteBtn").index( $(this) );
-                $(".act-row").eq(index).remove(); // delete act row
-                --actNo; // decrement activity number
-            });
-        });
-    });
-
-    // on click add new location
-    let locNo = 1;
-    $("#addLoc").on("click", function(){
-        $("#loc-cont").append(
-            `
-            <div class="form-group loc">
-                <label>Location # ${++locNo}</label>
-                <input class="form-control" placeholder="Enter Location" name="location[]">
-                <br>
-                <div class="d-flex">
-                    <button type="button" class="ml-auto mr-1 btn btn-danger deleteLoc">DELETE</button>
-                </div>
-            </div>  
-            `
-        );
-    });
-
-    // on click delete
-    $(".deleteBtn").each(function(){
-        $(this).on("click", function(){
-            let index = $(".deleteBtn").index( $(this) );
-            $(".act-row").eq(index).remove(); // delete act row
-            --actNo; // decrement activity number
-        });
-    });
-
-
-    // delete locations
-    $("#loc-cont").on("click", ".deleteLoc", function(){
-        $(this).parent().parent().remove();
-        --locNo;
-    });
-
-
-    // on submit configure data
-    $("form").submit(function(event){
-        event.preventDefault();
-
-        let formData = $('form').serializeArray();
-        let dayOfWeek = $("#dayOfWeek").val() !== "Choose..." ? $("#dayOfWeek").val() : null;
-
-        // configure schedule
-        let activities = formData.filter(data => data.name === "activity[]");
-        let actTimes = formData.filter(data => data.name === "act-time[]");
-
-        let schedule = [];
-        for(let i = 0; i < activities.length; ++i){
-            let activity = {
-                activity: activities[i].value,
-                time: actTimes[i].value,
-            }
-
-            schedule.push(activity);
-        }
-
-        // configure location
-        let locationVals = formData.filter(data => data.name === "location[]");
-
-        let location = [];
-        for(let i = 0; i < locationVals.length; ++i){
-            location.push(locationVals[i].value);
-        }
-
-        // assemble submission
-        let submission = {
-            title: formData.find(data => data.name === "title").value,
-            dayOfWeek: dayOfWeek,
-            msg: formData.find(data => data.name === "msg").value,
-            link: formData.find(data => data.name === "link").value,
-            time: formData.find(data => data.name === "time").value,
-            location: location,
-            schedule: schedule,
-        }
-
-        console.log(submission);
-
-        $.post("/events", { data: JSON.stringify(submission) }, 
-        
-            // on success
-            function(data){
-                window.location.href = "/events";
-            });
-    });
-</script>
+<script src="/javascripts/events/new.js"></script>

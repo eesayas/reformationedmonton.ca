@@ -23,6 +23,16 @@
         <a href="<%=event.link%>"><%=event.link%></a>
     </blockquote>
 
-    <small class="text-muted">Updated November 9 2020</small>
+    <small class="text-muted">Updated <span id="update"><%=event.updatedAt%></span></small>
+    
+    <% if(currentUser){ %>
+        <div>
+            <br>
+            <a href="/events/<%=event._id%>/edit" class="btn btn-primary rounded-0 mx-auto">EDIT THIS EVENT</a>
+        </div>
+    <% } %>
 </div>
  
+<script>
+    $("#update").text( moment($("#update").text()).format("LL HH:mm:ss a"))
+</script>

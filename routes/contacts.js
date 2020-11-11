@@ -67,7 +67,7 @@ router.post("/", async(req, res, next) => {
         var mailOptions = {
             from: `"Reformation Baptist Church of Edmonton" <${process.env.GMAIL_ADDRESS}>`,
             to: email,
-            subject: "We are looking forward to meeting you!",
+            subject: "You have submitted a question.",
             html: body,
         };
 

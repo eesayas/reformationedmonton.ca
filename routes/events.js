@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const title = 'Reformation Baptist Church of Edmonton';
 const Event = require("../model/event");
+const { isLoggedIn } = require("../middleware");
 
 /**
  * @route GET /events
@@ -18,7 +19,7 @@ router.get('/', async(req, res, next) => {
  * @desc NEW - This will render out a form where an Event can be created
  * @access Private
  */
-router.get('/new', (req, res, next) => {
+router.get('/new', isLoggedIn, (req, res, next) => {
     res.render("events/new", { title });
 });
 
@@ -27,7 +28,7 @@ router.get('/new', (req, res, next) => {
  * @desc CREATE - This will create the Event in the db
  * @access Private
  */
-router.post("/", async(req, res, next) => {
+router.post("/", isLoggedIn, async(req, res, next) => {
     const { title, dayOfWeek, date, msg, link, time, location, schedule } = JSON.parse(req.body.data);
 
     // create event via req.body
@@ -55,10 +56,10 @@ router.get("/:event_id", async(req, res, next) => {
  * @desc EDIT - This will render a form to edit the Event
  * @access Private
  */
-router.get("/:event_id/edit", async(req, res, next) => {
+router.get("/:event_id/edit", isLoggedIn, async(req, res, next) => {
     //get the event from db
     const event = await Event.findById(req.params.event_id);
-    res.render("events/edit", { event });
+    res.render("events/edit", { title, event });
 });
 
 /**
@@ -66,8 +67,8 @@ router.get("/:event_id/edit", async(req, res, next) => {
  * @desc UPDATE - This will update the event on db
  * @access Private
  */
-router.put("/:event_id", async(req, res, next) => {
-    const { title, dayOfWeek, date, msg, link } = req.body;
+router.put("/:event_id", isLoggedIn, async(req, res, next) => {
+    const { title, dayOfWeek, date, msg, link, time, location, schedule } = JSON.parse(req.body.data);
 
     // get the event from db
     const event = await Event.findById(req.params.event_id);
@@ -77,10 +78,13 @@ router.put("/:event_id", async(req, res, next) => {
     event.date = date;
     event.msg = msg;
     event.link = link;
+    event.time = time;
+    event.location = location;
+    event.schedule = schedule;
 
     await event.save();
 
-    res.redirect(`/events/${event._id}`);
+    res.status(200).json({success: true});
 });
 
 /**
@@ -88,7 +92,7 @@ router.put("/:event_id", async(req, res, next) => {
  * @desc DELETE - This will delete the event from the db
  * @access Private
  */
-router.delete("/:event_id", async(req, res, next) => {
+router.delete("/:event_id", isLoggedIn, async(req, res, next) => {
     const event = await Event.findById(req.params.event_id);
     await event.remove();
 
