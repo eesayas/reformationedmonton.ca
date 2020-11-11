@@ -3,6 +3,7 @@ const router = express.Router();
 const title = 'Reformation Baptist Church of Edmonton';
 const Sermon = require("../model/sermon");
 const moment = require("moment");
+const { isLoggedIn } = require("../middleware");
 
 /**
  * @route GET /sermons
@@ -36,13 +37,13 @@ router.get('/', async(req, res, next) => {
 
         sermons = await Sermon.find({
             uploadDate: { "$gte": lowerBound, "$lt": upperBound }
-        }).sort({uploadDate: 1});
+        }).sort({uploadDate: -1});
 
         return res.render("sermons/index", { title , sermons, archive });
     }
 
     // if no query
-    sermons = await Sermon.find({}).sort({uploadDate: 1}).limit(30);
+    sermons = await Sermon.find({}).sort({uploadDate: -1}).limit(30);
     return res.render('sermons/index', { title , sermons, archive });
 });
 
@@ -51,7 +52,7 @@ router.get('/', async(req, res, next) => {
  * @desc NEW - This will render a form where sermons can be created by a User
  * @access Private
  */
-router.get('/new', (req, res, next) => {
+router.get('/new', isLoggedIn, (req, res, next) => {
     res.render('sermons/new', { title });
 });
 
@@ -60,7 +61,7 @@ router.get('/new', (req, res, next) => {
  * @desc CREATE - This will create a new Sermon in db by User
  * @access Private
  */
-router.post("/", async(req, res, next) => {
+router.post("/", isLoggedIn, async(req, res, next) => {
     let { uploadDate, title, desc, url } = req.body;
     
     //configure thumbnail
@@ -70,10 +71,32 @@ router.post("/", async(req, res, next) => {
     const sermon = await Sermon.create({
         uploadDate, title, desc, url: videoId, thumbnail
     });
-    if(!sermon) throw Error("Something went wrong while creating Sermon");
 
-    // if request came from browser
-    if(!req.body.auth) return res.redirect(`/sermons/${sermon._id}`);
+    return res.redirect(`/sermons/${sermon._id}`);
+});
+
+/**
+ * @route POST /sermons/new
+ * @desc This is for IFTT webhook. this will automatically create a Sermon, after upload to Youtube
+ * @access Public
+ */
+router.post("/new", async(req, res, next) => {
+    let { uploadDate, title, desc, url, token } = req.body;
+
+    try{
+        if(!token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
+
+        //configure thumbnail
+        let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
+        let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+
+        const sermon = await Sermon.create({
+            uploadDate, title, desc, url: videoId, thumbnail
+        });
+        if(!sermon) throw Error("Something went wrong while auto creating sermon");
+    } catch(e){
+        res.status(400).json({msg: e.message});
+    }
 });
 
 /**
@@ -93,7 +116,7 @@ router.get("/:sermon_id", async(req, res, next) => {
  * @desc EDIT - This will render a form to edit a Sermon
  * @access Private
  */
-router.get("/:sermon_id/edit", async(req, res, next) => {
+router.get("/:sermon_id/edit", isLoggedIn, async(req, res, next) => {
     const sermon = await Sermon.findById(req.params.sermon_id);
     if(!sermon) throw Error("Something went wrong while retrieving Sermon");
 
@@ -105,14 +128,12 @@ router.get("/:sermon_id/edit", async(req, res, next) => {
  * @desc UPDATE - This will update a sermon in db
  * @access Private
  */
-router.put("/:sermon_id", async(req, res, next) => {
+router.put("/:sermon_id", isLoggedIn, async(req, res, next) => {
     let { uploadDate, title, desc, url } = req.body;
     
     //configure thumbnail
     let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-
-    console.log(videoId);
 
     const sermon = await Sermon.findById(req.params.sermon_id);
     if(!sermon) throw Error("Something went wrong while retrieving Sermon to be updated");
@@ -132,7 +153,7 @@ router.put("/:sermon_id", async(req, res, next) => {
  * @desc DELETE - This will delete the sermon from db
  * @access Private
  */
-router.delete("/:sermon_id", async(req, res, next) => {
+router.delete("/:sermon_id", isLoggedIn, async(req, res, next) => {
     try{
         const sermon = await Sermon.findById(req.params.sermon_id);
         if(!sermon) throw Error("Something went wrong while retrieving to delete Sermon");

@@ -61,7 +61,7 @@ $("#loc-cont").on("click", ".deleteLoc", function(){
 
 
 // on submit configure data
-$("form").submit(function(event){
+$("#form").submit(function(event){
     event.preventDefault();
 
     let formData = $('form').serializeArray();

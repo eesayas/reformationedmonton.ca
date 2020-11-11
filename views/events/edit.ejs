@@ -1,9 +1,9 @@
 <%- layout("layouts/boilerplate") -%>
 <% include ../partials/navbar-alt.ejs %>
 
-<form class="m-5">
+<form class="mr-5 ml-5 mt-5" id="form">
     <input type="text" name="id" value="<%=event._id%>" hidden>
-    <h2>Post an event</h2>
+    <h2>Edit an event</h2>
     <br>
     <div class="form-group">
         <label for="title">Event Title</label>
@@ -87,6 +87,10 @@
         <button type="submit" class="btn btn-success">SUBMIT</button>
         <a type="button" href="/events" class="btn btn-secondary">CANCEL</a>
     </div>
+</form>
+
+<form action="/events/<%=event._id%>?_method=DELETE" method="POST" class="mx-5">
+    <button type="submit" class="btn btn-danger">DELETE THIS EVENT</button>
 </form>
 
 <script src="/javascripts/events/edit.js"></script>

@@ -3,14 +3,16 @@ const User = require("../model/user");
 const router = express.Router();
 const title = "Reformation Baptist Church of Edmonton";
 const passport = require('passport');
+const Event = require("../model/event");
 
 /**
 @route  GET /
 @desc   This is the homepage
 @access Public
 */
-router.get("/", (req, res) => {
-    res.render("index", { title });
+router.get("/", async(req, res, next) => {
+    const events = await Event.find({});
+    res.render("index", { title, events });
 });
 
 /**
