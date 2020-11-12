@@ -3,6 +3,7 @@ const router = express.Router();
 const title = 'Reformation Baptist Church of Edmonton';
 const Sermon = require("../model/sermon");
 const moment = require("moment");
+const tz = require('moment-timezone');
 const { isLoggedIn } = require("../middleware");
 
 /**
@@ -68,6 +69,9 @@ router.post("/", isLoggedIn, async(req, res, next) => {
     let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
+    //config date
+    uploadDate = new Date(moment(uploadDate).tz(process.env.timezone));
+
     const sermon = await Sermon.create({
         uploadDate, title, desc, url: videoId, thumbnail
     });
@@ -81,25 +85,27 @@ router.post("/", isLoggedIn, async(req, res, next) => {
  * @access Public
  */
 router.post("/new", async(req, res, next) => {
-    console.log(req.body);
-    // let { uploadDate, title, desc, url, token } = req.body;
+    let { uploadDate, title, desc, url, token } = req.body;
 
-    // try{
-    //     if(token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
+    try{
+        if(token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
 
-    //     //configure thumbnail
-    //     let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
-    //     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+        //configure thumbnail
+        let videoId = url.split("/")[url.split("/").length -1];
+        let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
-    //     const sermon = await Sermon.create({
-    //         uploadDate, title, desc, url: videoId, thumbnail
-    //     });
-    //     if(!sermon) throw Error("Something went wrong while auto creating sermon");
+        //config date
+        uploadDate = new Date(moment(uploadDate.split(" at ")[0]).tz(process.env.timezone));
+
+        const sermon = await Sermon.create({
+            uploadDate, title, desc, url: videoId, thumbnail
+        });
+        if(!sermon) throw Error("Something went wrong while auto creating sermon");
 
         res.status(200).json({success: true});
-    // } catch(e){
-    //     res.status(400).json({msg: e.message});
-    // }
+    } catch(e){
+        res.status(400).json({msg: e.message});
+    }
 });
 
 /**
