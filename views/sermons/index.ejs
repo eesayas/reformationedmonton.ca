@@ -41,6 +41,6 @@
   $('.dropdown-toggle').dropdown();
   
   $(".sermon-date").each(function(index){
-    $(this).text( moment($(this).text()).format("LL") );
+    $(this).text( `Uploaded on ${moment($(this).text()).format("LL")}` );
   });
 </script>
