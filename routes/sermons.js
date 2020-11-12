@@ -84,7 +84,7 @@ router.post("/new", async(req, res, next) => {
     let { uploadDate, title, desc, url, token } = req.body;
 
     try{
-        if(!token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
+        if(token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
 
         //configure thumbnail
         let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
