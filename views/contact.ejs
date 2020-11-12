@@ -55,7 +55,23 @@
         $.post("/contact", {data: JSON.stringify(submission)}, 
             // on success
             function(data){
-
+                // show success modal
+                $("body").append(
+                    `
+                    <div class="position-fixed fixed-top w-100 h-100 d-flex justify-content-center d-none" style="background-color: rgba(0, 0, 0, .5);">
+                        <div class="position-absolute bg-light w-75 my-5 p-5 rounded">
+                            <div class="alert alert-success" role="alert">
+                                Submission successful!
+                                <ul>
+                                    <li>We have received your inquiry! You will hear from us shortly.</li>
+                                    <li>An email confirmation was sent to you.</li>
+                                </ul>
+                            </div>
+                            <a type="button" href="/contact" class="btn btn-success">OKAY</a>
+                        </div>
+                    </div>
+                    `
+                );
             });
 
     });

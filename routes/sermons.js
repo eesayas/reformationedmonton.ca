@@ -12,7 +12,7 @@ const { isLoggedIn } = require("../middleware");
  */
 router.get('/', async(req, res, next) => {
 
-    let sermons = await Sermon.find({}).select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt");
+    let sermons = await Sermon.find({}).select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt").sort({uploadDate: 1});
 
     sermons = sermons.map(sermon => {
         return moment(sermon.uploadDate).format("MMMM YYYY");

@@ -78,14 +78,17 @@
     // when an event is selected enable datepicker
     $("#event").on("change", function(){
 
+        
+
         // enable
         $("#date").prop("disabled", false);
 
         // get dayOfWeek of selected event
         let dayOfWeek = $(this).find(":selected").data("day");
+        console.log(dayOfWeek);
 
         // set dates that are clickable in date picker
-        $('[data-toggle="datepicker"]').datepicker({
+        $('[data-toggle="datepicker"]').datepicker("destroy").datepicker({
             filter: function(date){
                 if(date.getDay() !== day[dayOfWeek]){
                     return false;
