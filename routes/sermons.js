@@ -70,7 +70,7 @@ router.post("/", isLoggedIn, async(req, res, next) => {
     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
     //config date
-    uploadDate = new Date(moment(uploadDate).tz(process.env.timezone));
+    uploadDate = new Date(moment(new Date(uploadDate)).tz(process.env.timezone));
 
     const sermon = await Sermon.create({
         uploadDate, title, desc, url: videoId, thumbnail
@@ -95,7 +95,7 @@ router.post("/new", async(req, res, next) => {
         let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
         //config date
-        uploadDate = new Date(moment(uploadDate.split(" at ")[0]).tz(process.env.timezone));
+        uploadDate = new Date(moment(new Date(uploadDate.split(" at ")[0])).tz(process.env.timezone));
 
         const sermon = await Sermon.create({
             uploadDate, title, desc, url: videoId, thumbnail
@@ -146,6 +146,9 @@ router.put("/:sermon_id", isLoggedIn, async(req, res, next) => {
 
     const sermon = await Sermon.findById(req.params.sermon_id);
     if(!sermon) throw Error("Something went wrong while retrieving Sermon to be updated");
+
+    //config date
+    uploadDate = new Date(moment(new Date(uploadDate)).tz(process.env.timezone));
 
     sermon.uploadDate = uploadDate;
     sermon.title = title;
