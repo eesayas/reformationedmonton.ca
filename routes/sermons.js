@@ -12,7 +12,7 @@ const { isLoggedIn } = require("../middleware");
  */
 router.get('/', async(req, res, next) => {
 
-    let sermons = await Sermon.find({}).select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt").sort({uploadDate: 1});
+    let sermons = await Sermon.find({}).select("-title -desc -_id -url -thumbnail -__v -createdAt -updatedAt");
 
     sermons = sermons.map(sermon => {
         return moment(sermon.uploadDate).format("MMMM YYYY");
@@ -81,22 +81,25 @@ router.post("/", isLoggedIn, async(req, res, next) => {
  * @access Public
  */
 router.post("/new", async(req, res, next) => {
-    let { uploadDate, title, desc, url, token } = req.body;
+    console.log(req.body);
+    // let { uploadDate, title, desc, url, token } = req.body;
 
-    try{
-        if(token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
+    // try{
+    //     if(token !== process.env.AUTH_WEBHOOK_TOKEN) throw Error("Webhook token not matching");
 
-        //configure thumbnail
-        let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
-        let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    //     //configure thumbnail
+    //     let videoId = url.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent("v").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1");
+    //     let thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
-        const sermon = await Sermon.create({
-            uploadDate, title, desc, url: videoId, thumbnail
-        });
-        if(!sermon) throw Error("Something went wrong while auto creating sermon");
-    } catch(e){
-        res.status(400).json({msg: e.message});
-    }
+    //     const sermon = await Sermon.create({
+    //         uploadDate, title, desc, url: videoId, thumbnail
+    //     });
+    //     if(!sermon) throw Error("Something went wrong while auto creating sermon");
+
+        res.status(200).json({success: true});
+    // } catch(e){
+    //     res.status(400).json({msg: e.message});
+    // }
 });
 
 /**
