@@ -95,7 +95,7 @@ router.get('/logout', (req, res) => {
  * @route POST /register
  * @desc This will register user (MUST BE COMMENTED OUT)
  * @access Private
- */
+ 
 router.post("/register", async(req, res, next) => {
     const newUser = new User({
         username: req.body.username,
@@ -103,7 +103,7 @@ router.post("/register", async(req, res, next) => {
 
     await User.register(newUser, req.body.password);
     res.send(`${req.body.username} successfully registered`);
-});
+});*/
 
 
 module.exports = router;
