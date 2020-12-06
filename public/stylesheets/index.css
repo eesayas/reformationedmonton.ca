@@ -1,0 +1,97 @@
+.jumbotron em{
+    font-size: 3rem;
+}
+
+.red-button{
+    background-color: #fe424d !important;
+    color: white !important;
+}
+
+.fullscreen{
+    position: relative;
+    height: 100vh !important;
+}
+
+.main-display{
+    position: absolute;
+    display: flex !important;
+}
+
+.image-backdrop{
+    background-image: url('/images/congregation/congregation-2.JPG');
+    position: absolute;
+    overflow: hidden;
+    opacity: 0.3;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    transition: initial;
+}
+
+.panel-text{
+    height: 30rem;
+    display: flex;
+}
+
+.panel-text > div{
+    display: table;
+    margin: auto 3rem;
+}
+
+.panel-pic{
+    height: 30rem;
+    background-size: cover;
+    background-repeat: center;
+    background-position: center; 
+}
+
+.chevron{
+    color: #1aa6bb !important;
+}
+
+.backdrop{
+    position: absolute;
+    background: #022d41;
+}
+
+.jumbotron{
+    display: table !important;
+    margin: auto 20rem auto 1rem;
+    background-color: transparent !important;
+}
+
+.location-cont{
+    height: 30rem;
+    position: relative;
+}
+
+.location-cont > div{
+    position: absolute;
+    top: 0;
+}
+
+.location-image{
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    opacity: 0.2;
+}
+
+.location-text{
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 760px){
+    .jumbotron{
+        margin: auto 1rem;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .jumbotron em{
+        font-size: 2.4rem;
+    }
+}
+

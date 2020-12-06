@@ -1,0 +1,11 @@
+
+<% if(currentUser){ %>
+    <div class="py-5"></div>
+    <div class="position-fixed fixed-bottom bg-dark px-4 py-3 d-flex bg-dark">
+        <div class="ml-auto">
+            <span class="text-light align-center">Currently logged in as: <%=currentUser.username%></span>&nbsp;&nbsp;
+            <a class="btn btn-danger rounded-0" href="/logout" role="button">LOGOUT</a>
+        </div>
+    </div>
+<% } %>
+

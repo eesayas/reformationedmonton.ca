@@ -1,0 +1,38 @@
+<%- layout("layouts/boilerplate") -%>
+<% include ../partials/navbar-alt.ejs %>
+<% include ../partials/event-display.ejs %>
+
+<div class="m-5">
+    <h4>Schedule</h4>
+    <dl class="row">
+        <% event.schedule.forEach(act => { %>
+            <dt class="col-sm-3"><%=act.activity%></dt>
+            <dd class="col-sm-9"><%=act.time%></dd>
+        <% }); %>
+    </dl>
+
+    <h4>Message</h4>
+    <blockquote class="blockquote">
+        <p class="mb-0">
+            <%=event.msg%> 
+        </p>
+    </blockquote>
+
+    <h4>Link</h4>
+    <blockquote class="blockquote">
+        <a href="<%=event.link%>"><%=event.link%></a>
+    </blockquote>
+
+    <small class="text-muted">Updated <span id="update"><%=event.updatedAt%></span></small>
+    
+    <% if(currentUser){ %>
+        <div>
+            <br>
+            <a href="/events/<%=event._id%>/edit" class="btn btn-primary rounded-0 mx-auto">EDIT THIS EVENT</a>
+        </div>
+    <% } %>
+</div>
+ 
+<script>
+    $("#update").text( moment($("#update").text()).format("LL HH:mm:ss a"))
+</script>

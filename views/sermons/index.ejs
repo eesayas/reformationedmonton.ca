@@ -1,0 +1,46 @@
+<%- layout("layouts/boilerplate") -%>
+<% include ../partials/navbar-alt.ejs %>
+
+<div class="d-flex mx-5 my-3">
+  <% if(currentUser){ %>
+    <a href="/sermons/new" class="btn btn-primary rounded-0 mr-auto">ADD NEW SERMON</a>
+  <% } %>
+
+  <div class="dropdown ml-auto">
+    <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Archive
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <% archive.forEach( marker => { %>
+        <a class="dropdown-item" href="/sermons?archive=<%=marker.query%>"><%=marker.text%></a>
+      <% }); %>
+    </div>
+  </div>
+</div>
+
+<% sermons.forEach(sermon => { %>
+
+    <a href="/sermons/<%=sermon._id%>" + sermon._id class="card mx-5 my-3 shadow bg-light" role="button" style="text-decoration: none">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="<%=sermon.thumbnail%>" class="card-img" alt="card image">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-dark"><%=sermon.title%></h5>
+              <p class="card-text text-dark"><%=sermon.desc%></p>
+              <p class="card-text"><small class="text-muted sermon-date"><%=sermon.uploadDate%></small></p>
+            </div>
+          </div>
+        </div>
+      </a>
+
+<% }); %>
+
+<script>
+  $('.dropdown-toggle').dropdown();
+  
+  $(".sermon-date").each(function(index){
+    $(this).text( `Uploaded on ${moment($(this).text()).format("LL")}` );
+  });
+</script>

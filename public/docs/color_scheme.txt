@@ -1,0 +1,5 @@
+#DAECF3 --> light blue
+#022D41 --> dark blue
+#FE424D --> red
+#F0EDED --> grey
+#1AA6BB --> cyan

@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/stylesheets/partials/main-display.css">
+
+<div id="main-display">
+    <div style="background-image: url('/images/bible-study-event.JPG')" id="main-display-img"></div>
+    <div id="main-display-gradient"></div>
+    <div id="subtext">
+        <p><%=event.title%></p>
+        <div class="d-flex flex-wrap">
+            <small> <i class="calendar alternate outline icon"></i> <%=event.dayOfWeek%>s at <%=event.time%></small>&nbsp;&nbsp;
+            <small> <i class="map marker alternate icon"></i> <%=event.location.join(" or ")%></small>
+        </div>
+    </div>
+</div>

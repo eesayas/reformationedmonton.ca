@@ -1,0 +1,79 @@
+<%- layout("layouts/boilerplate") -%>
+<% include ./partials/navbar-alt.ejs %>
+<% include ./partials/main-display.ejs %>
+
+<form class="m-5" action="/contact" method="POST">
+    <h2>Contact Us Here</h2>
+    <br>
+    <p class="lead"><i class="mail alternate outline icon"></i> reformationedmonton@gmail.com</p>
+    <p class="lead"><i class="phone icon"></i>(780) 278 2900</p>
+    <br>
+
+    <h2>Or write your inquiry below</h2>
+    <br>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Enter a name to identify yourself and/or others" id="name" name="name" required>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" placeholder="Email Address" id="email" name="email" required>
+        </div>
+    
+        <div class="form-group col-md-6">
+            <label for="phone">Phone Number</label>
+            <input type="text" class="form-control" placeholder="Phone Number (optional)" id="phone" name="phone">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="msg">Message</label>
+        <textarea class="form-control" placeholder="Enter Event Message" id="msg" name="msg" required></textarea>
+    </div>
+
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">SUBMIT</button>
+    </div>
+</form>
+
+<script>
+    $('[data-toggle="datepicker"]').datepicker();
+
+    $("form").submit(function(event){
+        event.preventDefault();
+        let formData = $("form").serializeArray();
+        let submission = {
+            name: formData.find(data => data.name === "name").value,
+            email: formData.find(data => data.name === "email").value,
+            phone: formData.find(data => data.name === "phone").value,
+            msg: formData.find(data => data.name === "msg").value,
+        }
+
+        $.post("/contact", {data: JSON.stringify(submission)}, 
+            // on success
+            function(data){
+                // show success modal
+                $("body").append(
+                    `
+                    <div class="position-fixed fixed-top w-100 h-100 d-flex justify-content-center d-none" style="background-color: rgba(0, 0, 0, .5);">
+                        <div class="position-absolute bg-light w-75 my-5 p-5 rounded">
+                            <div class="alert alert-success" role="alert">
+                                Submission successful!
+                                <ul>
+                                    <li>We have received your inquiry! You will hear from us shortly.</li>
+                                    <li>An email confirmation was sent to you.</li>
+                                </ul>
+                            </div>
+                            <a type="button" href="/contact" class="btn btn-success">OKAY</a>
+                        </div>
+                    </div>
+                    `
+                );
+            });
+
+    });
+
+</script>
