@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+.DS_Store
+.env.save
+
+>>>>>>> d79174c8f5025e6ddb64da20021f70f8f335ffcb
 # Logs
 logs
 *.log
